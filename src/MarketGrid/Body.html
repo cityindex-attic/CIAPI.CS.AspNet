@@ -1,0 +1,31 @@
+﻿<div id="marketGrid">
+    <div>
+        <input id="marketSearchQuery" name="marketSearch" type="text" value="USD"/>
+        <button id="doMarketSearchButton" data-bind="click: doMarketSearch">Search</button>
+    </div>
+    <table border=1>
+        <thead>
+            <tr>
+                <th>Market</th>
+                <th>&nbsp;</th>
+                <th>Bid</th>
+                <th>Offer</th>
+                <th>High</th>
+                <th>Low</th>
+                <th>Change</th>
+            </tr>
+        </thead>
+        <tbody data-bind='template: { name: "itemTemplate", foreach: marketList }'></tbody>
+    </table>
+    <script type="text/html" id="itemTemplate">
+        <tr>
+            <td data-bind="text: Name">EUR/USD</td>
+            <td><span data-bind="attr: { id: MarketId() + '_sparkline'}">rendering...</span></td>
+            <td data-bind="text: currentPrice.bid().toFixed(5)">1.3876</td>
+            <td data-bind="text: currentPrice.offer().toFixed(5)">1.3876</td>
+            <td data-bind="text: currentPrice.high().toFixed(5)">1.3876</td>
+            <td data-bind="text: currentPrice.low().toFixed(5)">1.3876</td>
+            <td data-bind="text: currentPrice.change().toFixed(5), style: { backgroundColor: currentPrice.change() < 0 ? 'red' : 'blue' }">1.3876</td>
+        </tr>
+    </script>
+</div>

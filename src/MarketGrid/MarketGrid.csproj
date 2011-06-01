@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4FC000CB-D7D4-4CA6-BB58-A6350985578F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CIAPI.AspNet.MarketGrid</RootNamespace>
+    <AssemblyName>CIAPI.AspNet.MarketGrid</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Nonshipping>true</Nonshipping>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MarketGrid.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="ResourceUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Body.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="js\libs\CIAPI.js" />
+    <EmbeddedResource Include="js\libs\dd_belatedpng.js" />
+    <EmbeddedResource Include="js\libs\jquery-1.5.1.js" />
+    <EmbeddedResource Include="js\libs\jquery-1.5.1.min.js" />
+    <EmbeddedResource Include="js\libs\jquery-ui-1.8.11.custom\js\jquery-ui-1.8.11.custom.min.js" />
+    <EmbeddedResource Include="js\libs\jquery.sparkline.min.js" />
+    <EmbeddedResource Include="js\libs\jquery.tmpl.js" />
+    <EmbeddedResource Include="js\libs\json2.js" />
+    <EmbeddedResource Include="js\libs\knockout-1.2.0.debug.js" />
+    <EmbeddedResource Include="js\libs\knockout-1.2.0.js" />
+    <EmbeddedResource Include="js\libs\knockout.mapping-latest.debug.js" />
+    <EmbeddedResource Include="js\libs\knockout.mapping-latest.js" />
+    <EmbeddedResource Include="js\libs\modernizr-1.7.min.js" />
+    <EmbeddedResource Include="js\marketGrid.js" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

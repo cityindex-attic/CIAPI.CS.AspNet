@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarketGrid", "MarketGrid\MarketGrid.csproj", "{4FC000CB-D7D4-4CA6-BB58-A6350985578F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApplication", "TestWebApplication\TestWebApplication.csproj", "{A4077B71-935F-4C51-91AE-041CAED5CA1E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FC000CB-D7D4-4CA6-BB58-A6350985578F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FC000CB-D7D4-4CA6-BB58-A6350985578F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FC000CB-D7D4-4CA6-BB58-A6350985578F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FC000CB-D7D4-4CA6-BB58-A6350985578F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4077B71-935F-4C51-91AE-041CAED5CA1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4077B71-935F-4C51-91AE-041CAED5CA1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4077B71-935F-4C51-91AE-041CAED5CA1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4077B71-935F-4C51-91AE-041CAED5CA1E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
