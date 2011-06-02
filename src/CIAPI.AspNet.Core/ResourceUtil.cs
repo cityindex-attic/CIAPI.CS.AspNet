@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 
-namespace CIAPI.AspNet.MarketGrid
+namespace CIAPI.AspNet.Core
 {
 	public static class ResourceUtil
 	{

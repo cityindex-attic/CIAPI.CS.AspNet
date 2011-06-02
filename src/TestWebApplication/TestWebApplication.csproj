@@ -71,12 +71,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarketGrid\MarketGrid.csproj">
+    <ProjectReference Include="..\CIAPI.AspNet.Authentication\CIAPI.AspNet.Authentication.csproj">
       <Project>{4FC000CB-D7D4-4CA6-BB58-A6350985578F}</Project>
+      <Name>CIAPI.AspNet.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CIAPI.AspNet.MarketGrid\CIAPI.AspNet.MarketGrid.csproj">
+      <Project>{4058C6CC-4FB7-4262-84F6-F577AF581A01}</Project>
       <Name>CIAPI.AspNet.MarketGrid</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>
