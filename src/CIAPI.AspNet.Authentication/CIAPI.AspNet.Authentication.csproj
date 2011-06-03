@@ -52,16 +52,17 @@
     <EmbeddedResource Include="Body.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="js\libs\CIAPI.js" />
-    <EmbeddedResource Include="js\libs\knockout-1.2.0.js" />
-    <EmbeddedResource Include="js\libs\knockout.mapping-latest.js" />
-    <EmbeddedResource Include="js\authentication.js" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CIAPI.AspNet.Core\CIAPI.AspNet.Core.csproj">
       <Project>{CC2AE9A0-8C3D-4C90-A86A-18004C5CC34C}</Project>
       <Name>CIAPI.AspNet.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="js\CIAPI.Authentication-0001.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="js\libs\CIAPI-0001.min.js" />
+    <EmbeddedResource Include="js\libs\CIAPI.widget-0001.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

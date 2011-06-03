@@ -38,6 +38,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Extensions.cs" />
     <Compile Include="ICssRegistrar.cs" />
     <Compile Include="IJavaScriptRegistrar.cs" />
     <Compile Include="ResourceUtil.cs" />
