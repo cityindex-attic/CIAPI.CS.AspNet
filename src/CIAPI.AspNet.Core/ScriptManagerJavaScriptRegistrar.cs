@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace CIAPI.AspNet.Core
 {
-    public class ScriptManagerProxyJavaScriptRegistrar: IJavaScriptRegistrar
+    public class ScriptManagerJavaScriptRegistrar: IJavaScriptRegistrar
     {
         public void RegisterFromResource(WebControl control, Assembly resourceAssembly, string resourceNamePrefix, string resourceName)
         {

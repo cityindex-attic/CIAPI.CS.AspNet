@@ -13,6 +13,8 @@ namespace CIAPI.AspNet.Authentication
 		{
             base.OnPreRender(e);
 
+            CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Authentication", "css.style-0001.min.css");
+            
             JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI-0001.min.js");
             JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI.widget-0001.min.js");
             JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.CIAPI.Authentication-0001.min.js");

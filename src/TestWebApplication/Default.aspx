@@ -10,6 +10,8 @@
     <!--<link type="text/css"  href="http://cdn.wijmo.com/themes/rocket/jquery-wijmo.css" rel="Stylesheet"/>-->
     <link type="text/css"  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/black-tie/jquery-ui.css" rel="Stylesheet"/>
 <%--    <link type="text/css"  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/eggplant/jquery-ui.css" rel="Stylesheet"/>--%>
+
+    <link type="text/css"  href="StyleSheet1.css" rel="Stylesheet"/>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -23,7 +25,7 @@
     </asp:ScriptManager>
     
     <div>
-        <cc1:Authentication runat="server" Width="300px" />
+        <cc1:Authentication runat="server" Width="200px" />
 <%--        <cc1:MarketGrid runat="server" />--%>
     </div>
     </form>

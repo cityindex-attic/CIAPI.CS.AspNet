@@ -42,8 +42,8 @@
     <Compile Include="ICssRegistrar.cs" />
     <Compile Include="IJavaScriptRegistrar.cs" />
     <Compile Include="ResourceUtil.cs" />
-    <Compile Include="ScriptManagerProxyCssRegistrar.cs" />
-    <Compile Include="ScriptManagerProxyJavaScriptRegistrar.cs" />
+    <Compile Include="ScriptManagerCssRegistrar.cs" />
+    <Compile Include="ScriptManagerJavaScriptRegistrar.cs" />
     <Compile Include="WebControlBase.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,7 +15,7 @@ namespace CIAPI.AspNet.Core
             {
                 if (_javaScriptRegistrar == null)
                 {
-                    _javaScriptRegistrar = new ScriptManagerProxyJavaScriptRegistrar();
+                    _javaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
                 }
                 return _javaScriptRegistrar;
             }
@@ -34,7 +34,7 @@ namespace CIAPI.AspNet.Core
             {
                 if (_cssRegistrar == null)
                 {
-                    _cssRegistrar = new ScriptManagerProxyCssRegistrar();
+                    _cssRegistrar = new ScriptManagerCssRegistrar();
                 }
                 return _cssRegistrar;
             }

@@ -64,6 +64,12 @@
     <EmbeddedResource Include="js\libs\CIAPI-0001.min.js" />
     <EmbeddedResource Include="js\libs\CIAPI.widget-0001.min.js" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="css\style-0001.min.css" />
+    <Content Include="js\CIAPI.Authentication-0001.debug.js" />
+    <Content Include="js\libs\CIAPI-0001.debug.js" />
+    <Content Include="js\libs\CIAPI.widget-0001.debug.js" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
