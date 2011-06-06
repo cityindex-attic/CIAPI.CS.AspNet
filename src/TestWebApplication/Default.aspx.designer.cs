@@ -29,5 +29,14 @@ namespace TestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager;
+        
+        /// <summary>
+        /// AuthenticationWidget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::CIAPI.AspNet.Authentication.Authentication AuthenticationWidget;
     }
 }

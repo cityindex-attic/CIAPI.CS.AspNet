@@ -10,6 +10,24 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.MarketGrid", "CIAPI.AspNet.MarketGrid\CIAPI.AspNet.MarketGrid.csproj", "{4058C6CC-4FB7-4262-84F6-F577AF581A01}"
 EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://pkh-srv-tfweb01:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = TestWebApplication\\TestWebApplication.csproj
+		SccProjectName1 = TestWebApplication
+		SccLocalPath1 = TestWebApplication
+		SccProjectUniqueName2 = CIAPI.AspNet.Core\\CIAPI.AspNet.Core.csproj
+		SccProjectName2 = CIAPI.AspNet.Core
+		SccLocalPath2 = CIAPI.AspNet.Core
+		SccProjectUniqueName3 = CIAPI.AspNet.Authentication\\CIAPI.AspNet.Authentication.csproj
+		SccProjectName3 = CIAPI.AspNet.Authentication
+		SccLocalPath3 = CIAPI.AspNet.Authentication
+		SccProjectUniqueName4 = CIAPI.AspNet.MarketGrid\\CIAPI.AspNet.MarketGrid.csproj
+		SccProjectName4 = CIAPI.AspNet.MarketGrid
+		SccLocalPath4 = CIAPI.AspNet.MarketGrid
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms

@@ -14,6 +14,10 @@
     <AssemblyName>TestWebApplication</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -75,6 +79,10 @@
     <ProjectReference Include="..\CIAPI.AspNet.Authentication\CIAPI.AspNet.Authentication.csproj">
       <Project>{4FC000CB-D7D4-4CA6-BB58-A6350985578F}</Project>
       <Name>CIAPI.AspNet.Authentication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CIAPI.AspNet.Core\CIAPI.AspNet.Core.csproj">
+      <Project>{CC2AE9A0-8C3D-4C90-A86A-18004C5CC34C}</Project>
+      <Name>CIAPI.AspNet.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\CIAPI.AspNet.MarketGrid\CIAPI.AspNet.MarketGrid.csproj">
       <Project>{4058C6CC-4FB7-4262-84F6-F577AF581A01}</Project>

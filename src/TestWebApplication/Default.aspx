@@ -25,7 +25,7 @@
     </asp:ScriptManager>
     
     <div>
-        <cc1:Authentication runat="server" Width="200px" />
+        <cc1:Authentication ID="AuthenticationWidget" runat="server" Width="200px" />
 <%--        <cc1:MarketGrid runat="server" />--%>
     </div>
     </form>
