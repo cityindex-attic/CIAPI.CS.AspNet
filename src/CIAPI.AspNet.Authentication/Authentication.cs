@@ -9,6 +9,8 @@ namespace CIAPI.AspNet.Authentication
 	[ToolboxData("<{0}:ServerControl1 runat=server></{0}:ServerControl1>")]
 	public class Authentication : WebControlBase
 	{
+	    private bool _isAuthenticated = false;
+
 	    protected override void OnPreRender(EventArgs e)
 		{
             base.OnPreRender(e);
@@ -25,6 +27,13 @@ namespace CIAPI.AspNet.Authentication
 			var content = ResourceUtil.ReadText(GetType(), "Body.html").ReplaceWebControlTemplateVars(this);
 			output.Write(content);
 		}
+
+	    public bool IsAuthenticated
+	    {
+	        get {
+	            return _isAuthenticated;
+	        }
+	    }
 	}
 
 }

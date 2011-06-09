@@ -31,6 +31,15 @@ namespace TestWebApplication {
         protected global::System.Web.UI.ScriptManager ScriptManager;
         
         /// <summary>
+        /// isAuthenticatedLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal isAuthenticatedLabel;
+        
+        /// <summary>
         /// AuthenticationWidget control.
         /// </summary>
         /// <remarks>

@@ -13,11 +13,13 @@ namespace TestWebApplication
         protected override void OnInit(EventArgs e)
         {
             base.OnInit(e);
-            AuthenticationWidget.JavaScriptRegistrar = new EktronJavaScriptRegistrar();
+            AuthenticationWidget.JavaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
+            AuthenticationWidget.CssRegistrar = new ScriptManagerCssRegistrar();
         }
+
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+		    isAuthenticatedLabel.Text = AuthenticationWidget.IsAuthenticated ? "Is Authenticated" : "Is NOT Authenticated";
 		}
 	}
 }

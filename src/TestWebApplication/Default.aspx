@@ -24,10 +24,15 @@
         </Scripts>
     </asp:ScriptManager>
     
+    <div style="border:1px solid black; padding: 10px; margin: 5px">
+        <asp:Literal ID="isAuthenticatedLabel" runat="server" />
+    </div>
+
     <div>
         <cc1:Authentication ID="AuthenticationWidget" runat="server" Width="200px" />
 <%--        <cc1:MarketGrid runat="server" />--%>
     </div>
+
     </form>
 </body>
 </html>

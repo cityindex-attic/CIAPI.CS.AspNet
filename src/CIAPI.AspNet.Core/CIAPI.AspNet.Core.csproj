@@ -42,7 +42,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EktronJavaScriptRegistrar.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="ICssRegistrar.cs" />
     <Compile Include="IJavaScriptRegistrar.cs" />
