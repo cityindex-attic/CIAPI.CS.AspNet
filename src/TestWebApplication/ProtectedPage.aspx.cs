@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Security.Authentication;
 using CIAPI.AspNet.Core;
 
 namespace TestWebApplication
 {
-	public partial class Default : System.Web.UI.Page
+    public partial class ProtectedPage : System.Web.UI.Page
 	{
         protected override void OnInit(EventArgs e)
         {
@@ -19,7 +15,10 @@ namespace TestWebApplication
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-		    isAuthenticatedLabel.Text = AuthenticationWidget.IsAuthenticated ? "Is Authenticated" : "Is NOT Authenticated (try CC735158 / password)";
+		    if(!AuthenticationWidget.IsAuthenticated)
+		    {
+		       throw new AuthenticationException("You must be authenticated to view this page"); 
+		    }
 		}
 	}
 }

@@ -1,6 +1,56 @@
-﻿<div id="AuthenticationWidget_{clientId}" style="width: {width}"></div>
+﻿<script id="customAuthWidgetTemplate" type="text/x-jquery-tmpl">
+    <div class="ui-ciapi-authentication ui-widget ui-corner-all">
+        <div class="ui-ciapi-authentication-titlebar ui-widget-header ui-helper-clearfix">
+            <span class="ui-ciapi-authentication-title">Logon Form</span>
+        </div>
+        <div class="ui-ciapi-logon-view" data-bind="visible: activeView() === 'LogOn'">
+            <div class="ui-ciapi-authentication-content ui-widget-content">
+                <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p>
+                <fieldset>
+                    <label for="username">UserName</label>
+                    <input type="text"
+                           name="username"
+                           id="username"
+                           class="inputFields"
+                           data-bind="value: username"/>
+                    <label for="password">Password</label>
+                    <input type="password"
+                           name="password"
+                           id="password"
+                           class="inputFields"
+                           data-bind="value: password"/>
+                </fieldset>
+            </div>
+            <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">
+                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOn">Log on</button>
+            </div>
+        </div>
+        <div class="ui-ciapi-logoff-view" data-bind="visible: activeView() === 'LogOff'">
+            <div class="ui-ciapi-authentication-content ui-widget-content">
+                <p>You are logged in as <span data-bind="text: username"/></p>
+            </div>
+            <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">
+                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">Log off</button>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div id="AuthenticationWidget_{clientId}"></div>
 <script type="text/javascript">
+    $("#customAuthWidgetTemplate").template("customAuthWidgetTemplate"); //compile & name the template
     $(document).ready(function () {
-        $('#AuthenticationWidget_{clientId}').CIAPI_widget_AuthenticationWidget();
+        $('#AuthenticationWidget_{clientId}').CIAPI_widget_AuthenticationWidget(
+        {
+            width: '{width}',
+            template: 'customAuthWidgetTemplate', //override the default template
+            afterLogOn: function (data) {
+                {afterLogOn}
+            },
+            afterLogOff: function (data) {
+                {afterLogOff}
+            }
+        });
     });
 </script>
+

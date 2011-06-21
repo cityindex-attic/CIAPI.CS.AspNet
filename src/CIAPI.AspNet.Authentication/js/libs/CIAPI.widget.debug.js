@@ -2124,6 +2124,7 @@ ko.jqueryTmplTemplateEngine.prototype = new ko.templateEngine();
 ko.setTemplateEngine(new ko.jqueryTmplTemplateEngine());
 
 ko.exportSymbol('ko.jqueryTmplTemplateEngine', ko.jqueryTmplTemplateEngine);})(window);                  
+
 // Knockout Mapping plugin v1.0pre
 // (c) 2011 Steven Sanderson, Roy Jacobs - http://knockoutjs.com/
 // License: Ms-Pl (http://www.opensource.org/licenses/ms-pl.html)
@@ -2571,20 +2572,22 @@ ko.exportProperty = function (owner, publicName, object) {
 	ko.exportSymbol('ko.mapping.updateFromJS', ko.mapping.updateFromJS);
 	ko.exportSymbol('ko.mapping.updateFromJSON', ko.mapping.updateFromJSON);
 	ko.exportSymbol('ko.mapping.visitModel', ko.mapping.visitModel);
-})();var CIAPI = CIAPI || {};
+})();
+
+var CIAPI = CIAPI || {};
 (function($,undefined) {
     function ensureIsDefined(object, objectName) {
         if (object === undefined) {
             CIAPI.log(objectName + 'must be referenced');
         }
     }
-    ensureIsDefined($, 'jQuery 1.5.1+');
+    ensureIsDefined($, 'jQuery 1.5.2+');
     ensureIsDefined($.widget, 'jQuery UI 1.8+');
 
     $.widget("ui.CIAPI_widget", {
 	    version: "@VERSION",
         options: {
-            dependencies: [ {obj:$, description: "jQuery 1.5.1+"}, {obj:$.widget, description: "jQuery UI 1.8+"} ]
+            dependencies: [ {obj:$, description: "jQuery 1.5.2+" }, {obj:$.widget, description: "jQuery UI 1.8+"} ]
         },
         _checkDependencies: function() {
             for(var idx in dependencies) {
@@ -2593,3 +2596,4 @@ ko.exportProperty = function (owner, publicName, object) {
         }
     });
 }(jQuery));
+
