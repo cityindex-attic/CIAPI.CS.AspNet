@@ -3,8 +3,7 @@
 <%@ Register Assembly="CIAPI.AspNet.MarketGrid" Namespace="CIAPI.AspNet.MarketGrid" TagPrefix="cc1" %>
 <%@ Register Assembly="CIAPI.AspNet.Authentication" Namespace="CIAPI.AspNet.Authentication" TagPrefix="cc1" %>
 
-<asp:Content runat="server" ID="Content" ContentPlaceHolderID="HeadContent"></asp:Content>
-<asp:Content runat="server" ID="Content1" ContentPlaceHolderID="BodyContent">
+<asp:Content runat="server" ID="BodyContent1" ContentPlaceHolderID="BodyContent">
     <div style="border:1px solid black; padding: 10px; margin: 5px">
         <asp:Literal ID="isAuthenticatedLabel" runat="server" />
     </div>

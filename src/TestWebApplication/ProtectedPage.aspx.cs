@@ -10,7 +10,7 @@ namespace TestWebApplication
         {
             base.OnInit(e);
             AuthenticationWidget.JavaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
-            AuthenticationWidget.CssRegistrar = new ScriptManagerCssRegistrar();
+            AuthenticationWidget.CssRegistrar = new ControlInjectorCssRegistrar(Header);
         }
 
 		protected void Page_Load(object sender, EventArgs e)

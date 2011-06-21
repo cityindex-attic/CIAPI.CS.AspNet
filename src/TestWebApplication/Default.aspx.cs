@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 using CIAPI.AspNet.Core;
 
 namespace TestWebApplication
@@ -14,7 +9,7 @@ namespace TestWebApplication
         {
             base.OnInit(e);
             AuthenticationWidget.JavaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
-            AuthenticationWidget.CssRegistrar = new ScriptManagerCssRegistrar();
+            AuthenticationWidget.CssRegistrar = new ControlInjectorCssRegistrar(Header);
         }
 
 		protected void Page_Load(object sender, EventArgs e)

@@ -11,9 +11,6 @@
 <%--    <link type="text/css"  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/eggplant/jquery-ui.css" rel="Stylesheet"/>--%>
 
     <link type="text/css"  href="StyleSheet1.css" rel="Stylesheet"/>
-
-    <asp:ContentPlaceHolder id="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -26,6 +23,7 @@
             
                 <asp:ScriptReference Path="js/Super-Theme-Switcher/jquery.themeswitcher.min.js" />
             </Scripts>
+            
         </asp:ScriptManager>
 
         <!-- Themeswitcher tool -->
