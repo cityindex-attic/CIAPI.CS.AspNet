@@ -1,15 +1,14 @@
-<%@ Master Language="C#" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="TestWebApplication.Site1" %>
+
+<%@ Register Assembly="CIAPI.AspNet.LoginView" Namespace="CIAPI.AspNet.LoginView" TagPrefix="cc1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title>CIAPI.AspNet demos</title>
 
-       <!--<link type="text/css"  href="http://cdn.wijmo.com/themes/rocket/jquery-wijmo.css" rel="Stylesheet"/>-->
     <link type="text/css"  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/black-tie/jquery-ui.css" rel="Stylesheet"/>
-<%--    <link type="text/css"  href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/eggplant/jquery-ui.css" rel="Stylesheet"/>--%>
-
     <link type="text/css"  href="StyleSheet1.css" rel="Stylesheet"/>
 </head>
 <body>
@@ -38,6 +37,18 @@
                 });
             });
         </script>
+
+        <div style="border:1px solid black; padding: 10px; margin: 5px">
+            <cc1:LoginView ID="LoginView1" runat="server">
+                <LoggedInTemplate>
+                    <p>You are logged in as <%# Container.UserName %></p>
+                    <asp:HyperLink ID="LaunchPlatform" runat="server" Text="Launch platform" NavigateUrl="~/ThePlatform.aspx"/>
+                </LoggedInTemplate>
+                 <AnonymousTemplate>
+                    <asp:HyperLink ID="LogOn" runat="server" Text="Log on" NavigateUrl="~/Logon.aspx"/>
+                </AnonymousTemplate>
+            </cc1:LoginView>    
+         </div>
 
         <asp:ContentPlaceHolder id="BodyContent" runat="server" />
     </form>

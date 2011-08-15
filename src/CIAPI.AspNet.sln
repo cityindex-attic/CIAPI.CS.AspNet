@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.Authentication
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.MarketGrid", "CIAPI.AspNet.MarketGrid\CIAPI.AspNet.MarketGrid.csproj", "{4058C6CC-4FB7-4262-84F6-F577AF581A01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.LoginView", "CIAPI.AspNet.LoginView\CIAPI.AspNet.LoginView.csproj", "{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://pkh-srv-tfweb01:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -27,6 +29,9 @@ Global
 		SccProjectUniqueName4 = CIAPI.AspNet.MarketGrid\\CIAPI.AspNet.MarketGrid.csproj
 		SccProjectName4 = CIAPI.AspNet.MarketGrid
 		SccLocalPath4 = CIAPI.AspNet.MarketGrid
+		SccProjectUniqueName5 = CIAPI.AspNet.LoginView\\CIAPI.AspNet.LoginView.csproj
+		SccProjectName5 = CIAPI.AspNet.LoginView
+		SccLocalPath5 = CIAPI.AspNet.LoginView
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +82,16 @@ Global
 		{4058C6CC-4FB7-4262-84F6-F577AF581A01}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4058C6CC-4FB7-4262-84F6-F577AF581A01}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4058C6CC-4FB7-4262-84F6-F577AF581A01}.Release|x86.ActiveCfg = Release|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
