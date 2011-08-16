@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.MarketGrid", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.LoginView", "CIAPI.AspNet.LoginView\CIAPI.AspNet.LoginView.csproj", "{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIAPI.AspNet.Controls", "CIAPI.AspNet.Controls\CIAPI.AspNet.Controls.csproj", "{D3A121B0-6975-426D-A43E-941D380D02AB}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 7
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://pkh-srv-tfweb01:8080/tfs/defaultcollection
 		SccLocalPath0 = .
@@ -32,6 +34,9 @@ Global
 		SccProjectUniqueName5 = CIAPI.AspNet.LoginView\\CIAPI.AspNet.LoginView.csproj
 		SccProjectName5 = CIAPI.AspNet.LoginView
 		SccLocalPath5 = CIAPI.AspNet.LoginView
+		SccProjectUniqueName6 = CIAPI.AspNet.Controls\\CIAPI.AspNet.Controls.csproj
+		SccProjectName6 = CIAPI.AspNet.Controls
+		SccLocalPath6 = CIAPI.AspNet.Controls
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -92,6 +97,16 @@ Global
 		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}.Release|x86.ActiveCfg = Release|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D3A121B0-6975-426D-A43E-941D380D02AB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

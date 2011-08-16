@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ResponsiveLayout.Master.cs" Inherits="TestWebApplication.Site1" %>
+
+<%@ Register Assembly="CIAPI.AspNet.LoginView" Namespace="CIAPI.AspNet.LoginView"
+    TagPrefix="cc1" %>
+<!doctype html>
+<html>
+<head id="Head1" runat="server">
+    <title>CIAPI.AspNet demos</title>
+    <meta charset="utf-8" />
+    <!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]-->
+    <link type="text/css" href="js/themes/ci.default/ci.default.css" rel="Stylesheet" />
+    <link rel="stylesheet" media="all" href="js/layouts/responsive/responsive.layout.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body lang="en">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager" runat="server">
+        <Scripts>
+            <asp:ScriptReference Path="js/jquery/1.5.1/jquery.debug.js" />
+            <asp:ScriptReference Path="js/jquery.tmpl.min.js" />
+            <asp:ScriptReference Path="js/json2.js" />
+            <asp:ScriptReference Path="js/jquery-ui/1.8.11/js/jquery-ui.min.js" />
+            <asp:ScriptReference Path="js/jquery-ui/Super-Theme-Switcher/jquery.themeswitcher.min.js" />
+        </Scripts>
+    </asp:ScriptManager>
+    <script>
+        $(document).ready(function () {
+            $('#switcher').themeswitcher({
+                imgpath: "js/jquery-ui/Super-Theme-Switcher/images/",
+                additionalThemes: [
+                        { title: "City Index", name: "ci.default",
+                            icon: "theme_90_cityindex.png", url: "js/themes/ci.default/ci.default.css"
+                        }
+                    ]
+            });
+
+            $('.ui-ciapi-button').button({
+                icons: {
+                    primary: "ui-icon-circle-triangle-e"
+                }
+            });
+
+            $('.ui-ciapi-button-yellow').button({
+                icons: {
+                    primary: "ui-icon-circle-triangle-e"
+                }
+            });
+
+        });        </script>
+    <header>
+    <nav class=nav-feature>
+         <cc1:LoginView ID="LoginView1" runat="server">
+                <LoggedInTemplate>
+                    <p>You are logged in as <%# Container.UserName %>
+                    <a class=ui-ciapi-button href="https://ciapipreprod.cityindextest9.co.uk/tp/fx/?UserName=<%# Container.UserName %>&Session=<%# Container.Session %>&CultureId=69">Launch platform</a>
+                </LoggedInTemplate>
+                 <AnonymousTemplate>
+                     <ul>                        <li><a href="Logon.aspx" class=ui-ciapi-button>Log On</a></li>                        <li><a href="http://www.applyforanaccount.com/citestaccount/" class=ui-ciapi-button-yellow>Apply Now</a></li>                        <li class="rsp-toggle-hide rsp-fl-r"><a href="#">Contact Us</a></li>                    </ul>                </AnonymousTemplate>
+            </cc1:LoginView>    
+
+    </nav>
+    <div class=logo>
+        <h1 class=title><a href="#">CI Responsive Design</a></h1>
+        <p class=tagline>Content view across multiple devices</p>
+    </div>
+
+    <nav class=nav-primary>
+        <ul>
+            <li><a href="#">Spread Betting</a></li>
+            <li><a href="#">CFD Trading</a></li>
+            <li><a href="#">Range of Markets</a></li>
+            <li><a href="#">Trading Platform</a></li>
+            <li class=active><a href="#">Learn to Trade</a></li>
+            <li><a href="#">Market Analysis</a></li>
+            <li class=rsp-toggle-hide><a href="#">Contact Us</a></li>
+        </ul>
+    </nav>
+</header>
+    <aside class="authentication">        <div id="switcher_wrap" style="margin-bottom:10px">
+            <!-- Themeswitcher tool -->
+            <div id="switcher"></div>
+        </div>        <asp:ContentPlaceHolder ID="AuthenticationAsideContent" runat="server" />
+    </aside>
+    <div class="featured">
+        <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
+    </div>
+    <div class="content">
+        <asp:ContentPlaceHolder ID="BodyContent" runat="server" />
+    </div>
+        
+        
+        <aside class="sidebar">            <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
+                    </aside>
+   <footer>    <ul>        <li><a href="#">About Us</a></li>        <li><a href="#">Help & Support</a></li>        <li><a href="#">City Index Global Partnerships</a></li>        <li><a href="#">Terms and Policies</a></li>        <li><a href="#">Press Area</a></li>        <li><a href="#">Careers</a></li>        <li><a href="#">Glossary</a></li>        <li><a href="#">Site Map</a></li>    </ul>    <p>Spread betting and CFD trading are leveraged products which can result in losses greater than your initial        deposit. Ensure you fully understand the risks.</p>
+    <p>*Spread betting and CFD trading are exempt from UK stamp duty. Spread betting is also exempt from UK Capital        Gains Tax. However, tax laws are subject to change and depend on individual circumstances. Please seek        independent advice if necessary.</p>
+</footer>
+    </form>
+</body>
+</html>

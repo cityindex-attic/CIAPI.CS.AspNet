@@ -49,6 +49,24 @@ namespace TestWebApplication {
         protected global::CIAPI.AspNet.LoginView.LoginView LoginView1;
         
         /// <summary>
+        /// AuthenticationAsideContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder AuthenticationAsideContent;
+        
+        /// <summary>
+        /// FeaturedContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder FeaturedContent;
+        
+        /// <summary>
         /// BodyContent control.
         /// </summary>
         /// <remarks>
@@ -56,5 +74,14 @@ namespace TestWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder BodyContent;
+        
+        /// <summary>
+        /// SidebarContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder SidebarContent;
     }
 }

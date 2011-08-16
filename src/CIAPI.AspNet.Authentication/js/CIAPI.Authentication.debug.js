@@ -4,33 +4,46 @@
             width: 600,
             afterLogOn: function (message) { },
             afterLogOff: function (message) { },
-            template: $.template('defaultAuthWidgetTemplate',
-                '<div id="login_message"></div>                                                              ' +
-                '<p>                                                                                         ' +
-                '    <label for="username">Username<br />                                                    ' +
-                '    <input type="text"                                                                      ' +
-                '            name="username"                                                                 ' +
-                '            id="username"                                                                   ' +
-                '            class="inputFields"                                                             ' +
-                '            data-bind="value: username"                                                     ' +
-                '            size="20"                                                                       ' +
-                '            tabindex="1" />                                                                 ' +
-                '    </label>                                                                                ' +
-                '</p>                                                                                        ' +
-                '<p>                                                                                         ' +
-                '    <label for="password">Password<br />                                                    ' +
-                '    <input type="password"                                                                  ' +
-                '            name="password"                                                                 ' +
-                '            id="password"                                                                   ' +
-                '            class="inputFields"                                                             ' +
-                '            data-bind="value: password"                                                     ' +
-                '            size="20"                                                                       ' +
-                '            tabindex="2" />                                                                 ' +
-                '    </label>                                                                                ' +
-                '</p>                                                                                        ' +
-                '<p class="submit">                                                                          ' +
-                '    <button id="doLogOnButton" data-bind="click: doLogOn" tabindex="3">Log on</button>' +
-                '</p>                                                                                        ')
+            template: $.template('defaultAuthWidgetTemplate',                                                                  
+                '<div class="ui-ciapi-authentication ui-widget ui-widget-content ui-corner-all">                               '+
+                '    <div class="ui-ciapi-logon-view  ui-corner-all" data-bind="visible: activeView() === \'LogOn\'">          '+
+                '    <form class="ui-ciapi-authentication-form">    ' +
+                    '<div class="ui-ciapi-authentication-content ui-widget-content ui-corner-top">                         '+
+                '            <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p> '+
+                '            <fieldset>                                                                                        '+
+                '                <label for="username">UserName</label>                                                        '+
+                '                <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">                   '+
+                '                    <input type="text"                                                                        '+
+                '                       name="username"                                                                        '+
+                '                       id="username"                                                                          '+
+                '                       class="required inputFields"                                                                    '+
+                '                       data-bind="value: username"/>                                                          '+
+                '                </div>                                                                                        '+
+                '                <label for="password">Password</label>                                                        '+
+                '                <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">                   '+
+                '                    <input type="password"                                                                    '+
+                '                       name="password"                                                                        '+
+                '                       id="password"                                                                          '+
+                '                       class="required inputFields"                                                                    '+
+                '                       data-bind="value: password"/>                                                          '+
+                '                </div>                                                                                        '+
+                '                                                                                                              '+
+                '            </fieldset>                                                                                       '+
+                '        </div>                                                                                                '+
+                '        <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix ui-corner-bottom">'+
+                '            <button class="ui-ciapi-authentication-button" data-bind="click: doLogOn">Log on</button>         '+
+                '        </div>       ' +
+                    '</form>                                                                                         '+
+                '    </div>                                                                                                    '+
+                '    <div class="ui-ciapi-logoff-view  ui-corner-all" data-bind="visible: activeView() === \'LogOff\'">        '+
+                '        <div class="ui-ciapi-authentication-content ui-widget-content">                                       '+
+                '            <p>You are logged in as <span data-bind="text: username"/></p>                                    '+
+                '        </div>                                                                                                '+
+                '        <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">                 '+
+                '            <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">Log off</button>       '+
+                '        </div>                                                                                                '+
+                '    </div>                                                                                                    '+
+                '</div>')
         },
         _createViewModel: function(widgetRef) {
           return {
@@ -41,6 +54,7 @@
                 errorMessage: ko.observable(""),
                 doLogOn: function () {
                     var viewModel = this;
+                    if (!viewModel.widget.element.find('.ui-ciapi-authentication-form').valid()) { return; }
                     CIAPI.connect({
                         UserName: viewModel.username(),
                         Password: viewModel.password(),
@@ -76,7 +90,11 @@
 
             this.element.css('width', this.options.width);
 
-            this.element.find(".ui-ciapi-authentication-button").button();
+            this.element.find(".ui-ciapi-authentication-button").button({
+                icons: {
+                    primary: "ui-icon-circle-triangle-e"
+                }
+            });
 
             this._update();
         },
