@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
     public interface IJavaScriptRegistrar
     {

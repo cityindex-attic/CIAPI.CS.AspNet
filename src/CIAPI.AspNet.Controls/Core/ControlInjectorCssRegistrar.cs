@@ -1,23 +1,30 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
-    public class ScriptManagerCssRegistrar : ICssRegistrar
+    public class ControlInjectorCssRegistrar : ICssRegistrar
     {
+        private readonly Control _injectionTarget;
+
+        public ControlInjectorCssRegistrar(Control injectionTarget)
+        {
+            _injectionTarget = injectionTarget;
+        }
+
         public void RegisterFromResource(WebControl control, Type resourceAssembly, string resourceNamePrefix, string resourceName)
         {
-            var scriptManager = GetPageScriptManager(control);
+//            var scriptManager = GetPageScriptManager(control);
 
-            if (ResourceAddedAlready(scriptManager, resourceName)) return;
+//            if (ResourceAddedAlready(scriptManager, resourceName)) return;
             var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceAssembly,
                                                                      resourceNamePrefix + "." + resourceName);
 
-            var css = @"<link href=""" + cssUrl + @""" type=""text/css"" rel=""stylesheet"" />";
-            ScriptManager.RegisterClientScriptBlock(control.Page, control.GetType(), resourceName, css, false);
+            var cssControl = new Literal {Text = @"<link href=""" + cssUrl + @""" type=""text/css"" rel=""stylesheet"" />"};
+            _injectionTarget.Controls.Add(cssControl);
+//            ScriptManager.RegisterClientScriptBlock(control.Page, control.GetType(), resourceName, css, false);
         }
 
         private static ScriptManager GetPageScriptManager(Control control)

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Web.UI;
-using CIAPI.AspNet.Core;
+using CIAPI.AspNet.Controls.Core;
 
-namespace CIAPI.AspNet.Authentication
+namespace CIAPI.AspNet.Controls.Authentication
 {
 	[DefaultProperty("Text")]
 	[ToolboxData("<{0}:ServerControl1 runat=server></{0}:ServerControl1>")]
@@ -13,24 +13,24 @@ namespace CIAPI.AspNet.Authentication
 		{
             base.OnPreRender(e);
 
-            CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Authentication", "css.ci.default.ci.default.css");
+            CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Controls.Authentication", "css.ci.default.ci.default.css");
             
             if (IsDebug)
             {
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI.debug.js");
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI.widget.debug.js");
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.CIAPI.Authentication.debug.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.libs.CIAPI.debug.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.libs.CIAPI.widget.debug.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.CIAPI.Authentication.debug.js");
             }
             else
             {
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI.min.js");
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.libs.CIAPI.widget.min.js");
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.CIAPI.Authentication.min.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.libs.CIAPI.min.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.libs.CIAPI.widget.min.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.CIAPI.Authentication.min.js");
             }
 		    
             if (UseMockData)
             {
-                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Authentication", "js.CIAPI.amplify.requests.mock.js");
+                JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.CIAPI.amplify.requests.mock.js");
             }
         }
 

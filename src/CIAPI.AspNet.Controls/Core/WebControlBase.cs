@@ -1,6 +1,6 @@
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
     public class WebControlBase : WebControl
     {

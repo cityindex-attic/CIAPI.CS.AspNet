@@ -1,8 +1,7 @@
 using System;
-using System.Reflection;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
     public interface ICssRegistrar
     {

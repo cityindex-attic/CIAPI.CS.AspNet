@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
 	public static class ResourceUtil
 	{

@@ -1,21 +1,22 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
-    public class ScriptManagerJavaScriptRegistrar: IJavaScriptRegistrar
+    public class ScriptManagerCssRegistrar : ICssRegistrar
     {
-        public void RegisterFromResource(WebControl control, Assembly resourceAssembly, string resourceNamePrefix, string resourceName)
+        public void RegisterFromResource(WebControl control, Type resourceAssembly, string resourceNamePrefix, string resourceName)
         {
             var scriptManager = GetPageScriptManager(control);
 
             if (ResourceAddedAlready(scriptManager, resourceName)) return;
+            var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceAssembly,
+                                                                     resourceNamePrefix + "." + resourceName);
 
-            scriptManager.Scripts.Add(
-                new ScriptReference(resourceNamePrefix + "." + resourceName, resourceAssembly.FullName));
+            var css = @"<link href=""" + cssUrl + @""" type=""text/css"" rel=""stylesheet"" />";
+            ScriptManager.RegisterClientScriptBlock(control.Page, control.GetType(), resourceName, css, false);
         }
 
         private static ScriptManager GetPageScriptManager(Control control)
@@ -34,5 +35,7 @@ namespace CIAPI.AspNet.Core
         {
             return scriptManager.Scripts.Where(s => s.Name.EndsWith(resourceName)).Count() > 0;
         }
+
+        
     }
 }

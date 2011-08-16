@@ -37,14 +37,72 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\WebResources.cs" />
+    <Compile Include="Core\ControlInjectorCssRegistrar.cs" />
+    <Compile Include="Core\Extensions.cs" />
+    <Compile Include="Core\ICssRegistrar.cs" />
+    <Compile Include="Core\IJavaScriptRegistrar.cs" />
+    <Compile Include="Core\ResourceUtil.cs" />
+    <Compile Include="Core\ScriptManagerCssRegistrar.cs" />
+    <Compile Include="Core\ScriptManagerJavaScriptRegistrar.cs" />
+    <Compile Include="Core\WebControlBase.cs" />
+    <Compile Include="LoginView\LoginView.cs" />
+    <Compile Include="LoginView\LoginViewData.cs" />
+    <Compile Include="MarketGrid\MarketGrid.cs" />
+    <Compile Include="MarketGrid\WebResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\Body.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\CIAPI.amplify.requests.mock.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\CIAPI.Authentication.debug.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\CIAPI.Authentication.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\libs\CIAPI.debug.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\libs\CIAPI.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\libs\CIAPI.widget.debug.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\js\libs\CIAPI.widget.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\css\CIAPI.Authentication.min.css" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="MarketGrid\js\libs\CIAPI.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MarketGrid\js\libs\knockout-1.2.0.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MarketGrid\js\libs\knockout.mapping-latest.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MarketGrid\js\marketGrid.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MarketGrid\Body.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

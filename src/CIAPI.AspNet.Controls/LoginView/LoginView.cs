@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.LoginView
+namespace CIAPI.AspNet.Controls.LoginView
 {
     public class LoginView: WebControl, INamingContainer
     {

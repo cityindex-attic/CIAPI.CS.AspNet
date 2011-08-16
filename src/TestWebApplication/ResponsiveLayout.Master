@@ -1,7 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ResponsiveLayout.Master.cs" Inherits="TestWebApplication.Site1" %>
 
-<%@ Register Assembly="CIAPI.AspNet.LoginView" Namespace="CIAPI.AspNet.LoginView"
-    TagPrefix="cc1" %>
+<%@ Register Assembly="CIAPI.AspNet.Controls" Namespace="CIAPI.AspNet.Controls.LoginView" TagPrefix="cc1" %>
+
 <!doctype html>
 <html>
 <head id="Head1" runat="server">

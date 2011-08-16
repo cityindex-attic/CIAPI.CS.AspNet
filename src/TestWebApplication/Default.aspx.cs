@@ -1,5 +1,4 @@
 ﻿using System;
-using CIAPI.AspNet.Core;
 
 namespace TestWebApplication
 {

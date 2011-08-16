@@ -177,21 +177,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CIAPI.AspNet.Authentication\CIAPI.AspNet.Authentication.csproj">
-      <Project>{4FC000CB-D7D4-4CA6-BB58-A6350985578F}</Project>
-      <Name>CIAPI.AspNet.Authentication</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CIAPI.AspNet.Core\CIAPI.AspNet.Core.csproj">
-      <Project>{CC2AE9A0-8C3D-4C90-A86A-18004C5CC34C}</Project>
-      <Name>CIAPI.AspNet.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CIAPI.AspNet.LoginView\CIAPI.AspNet.LoginView.csproj">
-      <Project>{2B8F54FD-B0A8-4576-96B3-4464B5355BA9}</Project>
-      <Name>CIAPI.AspNet.LoginView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CIAPI.AspNet.MarketGrid\CIAPI.AspNet.MarketGrid.csproj">
-      <Project>{4058C6CC-4FB7-4262-84F6-F577AF581A01}</Project>
-      <Name>CIAPI.AspNet.MarketGrid</Name>
+    <ProjectReference Include="..\CIAPI.AspNet.Controls\CIAPI.AspNet.Controls.csproj">
+      <Project>{D3A121B0-6975-426D-A43E-941D380D02AB}</Project>
+      <Name>CIAPI.AspNet.Controls</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

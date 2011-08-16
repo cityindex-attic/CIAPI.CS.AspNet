@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Logon.aspx.cs" 
     MasterPageFile="~/ResponsiveLayout.Master" Inherits="TestWebApplication.Logon" %>
-<%@ Register Assembly="CIAPI.AspNet.Authentication" Namespace="CIAPI.AspNet.Authentication" TagPrefix="cc1" %>
+<%@ Register Assembly="CIAPI.AspNet.Controls" Namespace="CIAPI.AspNet.Controls.Authentication" TagPrefix="cc1" %>
 
 <asp:Content runat="server" ID="BodyContent1" ContentPlaceHolderID="BodyContent">
 

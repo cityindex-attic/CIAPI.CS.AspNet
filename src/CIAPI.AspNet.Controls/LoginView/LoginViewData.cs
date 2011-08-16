@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CIAPI.AspNet.LoginView
+namespace CIAPI.AspNet.Controls.LoginView
 {
     [ToolboxItem(false)]
     public class LoginViewData : WebControl, INamingContainer

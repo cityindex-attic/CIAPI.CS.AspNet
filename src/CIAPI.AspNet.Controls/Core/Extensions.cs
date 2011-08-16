@@ -1,4 +1,4 @@
-﻿namespace CIAPI.AspNet.Core
+namespace CIAPI.AspNet.Controls.Core
 {
     public static class Extensions
     {

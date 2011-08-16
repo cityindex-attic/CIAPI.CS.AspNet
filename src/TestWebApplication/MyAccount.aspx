@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/ResponsiveLayout.Master"
 CodeBehind="MyAccount.aspx.cs" Inherits="TestWebApplication.ProtectedPage" %>
 
-<%@ Register Assembly="CIAPI.AspNet.Authentication" Namespace="CIAPI.AspNet.Authentication" TagPrefix="cc1" %>
+<%@ Register Assembly="CIAPI.AspNet.Controls" Namespace="CIAPI.AspNet.Controls.Authentication" TagPrefix="cc1" %>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="FeaturedContent">
     <h3>My Account</h3>

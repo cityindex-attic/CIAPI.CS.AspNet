@@ -46,7 +46,7 @@ namespace TestWebApplication {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CIAPI.AspNet.LoginView.LoginView LoginView1;
+        protected global::CIAPI.AspNet.Controls.LoginView.LoginView LoginView1;
         
         /// <summary>
         /// AuthenticationAsideContent control.
