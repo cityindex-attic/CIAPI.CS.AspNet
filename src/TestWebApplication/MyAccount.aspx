@@ -5,9 +5,10 @@ CodeBehind="MyAccount.aspx.cs" Inherits="TestWebApplication.ProtectedPage" %>
 
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="FeaturedContent">
     <h3>My Account</h3>
-    <div>
-       <p>Private data goes here</p>
+    <div class="ui-state-highlight" style="padding:10px">
+        LoginState: <asp:Literal ID="LoginStateLiteral" runat="server" />
     </div>
+    <p>Private data goes here</p>
 </asp:Content>
 
 <asp:Content runat="server" ID="Content3" ContentPlaceHolderID="BodyContent">

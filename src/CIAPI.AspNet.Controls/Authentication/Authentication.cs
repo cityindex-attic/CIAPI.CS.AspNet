@@ -9,6 +9,14 @@ namespace CIAPI.AspNet.Controls.Authentication
 	[ToolboxData("<{0}:ServerControl1 runat=server></{0}:ServerControl1>")]
 	public class Authentication : WebControlBase
 	{
+	    private readonly AuthenticationStateChecker _authenticationStateChecker;
+
+        public Authentication()
+        {
+            UseMockData = false;
+            _authenticationStateChecker = new AuthenticationStateChecker(this);
+        }
+
 	    protected override void OnPreRender(EventArgs e)
 		{
             base.OnPreRender(e);
@@ -62,10 +70,6 @@ namespace CIAPI.AspNet.Controls.Authentication
             return ""; 
 	    }
 
-	    public Authentication()
-	    {
-	        UseMockData = false;
-	    }
 
 	    public bool IsDebug { get; set; }
 	    public bool UseMockData { get; set; }
@@ -75,7 +79,7 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    public string UserName
 	    {
 	        get {
-	            return GetCookieValue("UserName");
+                return _authenticationStateChecker.UserName;
 	        }
 	    }
 
@@ -83,7 +87,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         {
             get
             {
-                return GetCookieValue("Session");
+                return _authenticationStateChecker.Session;
             }
         }
 
@@ -91,19 +95,9 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    {
 	        get 
             {
-	            return (UserName + Session).Trim() != string.Empty;
+                return _authenticationStateChecker.IsAuthenticated;
 	        }
 	    }
-
-        private string GetCookieValue(string cookieName)
-        {
-            var httpCookie = Page.Request.Cookies[cookieName];
-            if (httpCookie == null || string.IsNullOrEmpty(httpCookie.Value))
-            {
-                return string.Empty;
-            }
-            return httpCookie.Value;
-        }
 	}
 
 }

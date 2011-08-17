@@ -1,68 +1,50 @@
-﻿using System.ComponentModel;
+﻿using System.Collections;
+using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CIAPI.AspNet.Controls.Core;
 
 namespace CIAPI.AspNet.Controls.LoginView
 {
-    public class LoginView: WebControl, INamingContainer
+    public class LoginView : WebControl, INamingContainer
     {
+        private readonly AuthenticationStateChecker _authenticationStateChecker;
         private LoginViewData _loginViewData;
 
-        [Browsable(false), 
-        DefaultValue(null), 
-        Description("What to show in the Logged in state"), 
-        TemplateContainer(typeof(LoginViewData)), 
-        PersistenceMode(PersistenceMode.InnerProperty)]
+        public LoginView()
+        {
+            _authenticationStateChecker = new AuthenticationStateChecker(this);
+        }
+
+        [Browsable(false),
+         DefaultValue(null),
+         Description("What to show in the Logged in state"),
+         TemplateContainer(typeof (LoginViewData)),
+         PersistenceMode(PersistenceMode.InnerProperty),
+         TemplateInstance(TemplateInstance.Single)]
         public virtual ITemplate LoggedInTemplate { get; set; }
 
         [Browsable(false),
-       DefaultValue(null),
-       Description("What to show to the anonymous user"),
-       TemplateContainer(typeof(LoginViewData)),
-       PersistenceMode(PersistenceMode.InnerProperty)]
+         DefaultValue(null),
+         Description("What to show to the anonymous user"),
+         TemplateContainer(typeof (LoginViewData)),
+         PersistenceMode(PersistenceMode.InnerProperty),
+         TemplateInstance(TemplateInstance.Single)]
         public virtual ITemplate AnonymousTemplate { get; set; }
 
         public string UserName
         {
-            get
-            {
-                return GetCookieValue("UserName");
-            }
+            get { return _authenticationStateChecker.UserName; }
         }
 
         public string Session
         {
-            get
-            {
-                return GetCookieValue("Session");
-            }
+            get { return _authenticationStateChecker.Session; }
         }
 
         public bool IsAuthenticated
         {
-            get
-            {
-                return (UserName + Session).Trim() != string.Empty;
-            }
-        }
-
-        private string GetCookieValue(string cookieName)
-        {
-            var httpCookie = Page.Request.Cookies[cookieName];
-            if (httpCookie == null || string.IsNullOrEmpty(httpCookie.Value))
-            {
-                return string.Empty;
-            }
-            return httpCookie.Value;
-        }
-
-        public override ControlCollection Controls
-        {
-            get
-            {
-                this.EnsureChildControls();
-                return base.Controls;
-            }
+            get { return _authenticationStateChecker.IsAuthenticated; }
         }
 
         protected override void CreateChildControls()
@@ -72,23 +54,21 @@ namespace CIAPI.AspNet.Controls.LoginView
 
             if (IsAuthenticated)
             {
-                LoggedInTemplate.InstantiateIn(_loginViewData);    
+                LoggedInTemplate.InstantiateIn(_loginViewData);
             }
             else
             {
                 AnonymousTemplate.InstantiateIn(_loginViewData);
             }
-            
+
             Controls.Add(_loginViewData);
-            
         }
 
         public override void DataBind()
         {
             CreateChildControls();
-            this.ChildControlsCreated = true;
-            base.DataBind();  
+            ChildControlsCreated = true;
+            base.DataBind();
         }
-
     }
 }

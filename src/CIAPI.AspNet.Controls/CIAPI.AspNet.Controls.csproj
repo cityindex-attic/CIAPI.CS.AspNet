@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="Authentication\Authentication.cs" />
     <Compile Include="Authentication\WebResources.cs" />
+    <Compile Include="Core\AuthenticationStateChecker.cs" />
     <Compile Include="Core\ControlInjectorCssRegistrar.cs" />
     <Compile Include="Core\Extensions.cs" />
     <Compile Include="Core\ICssRegistrar.cs" />

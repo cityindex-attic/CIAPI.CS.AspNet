@@ -46,40 +46,67 @@
                 }
             });
 
-        });        </script>
-    <header>
-    <nav class=nav-feature>
+        });
+        </script>
+    <header>
+
+    <nav class=nav-feature>
+
          <cc1:LoginView ID="LoginView1" runat="server">
                 <LoggedInTemplate>
                     <p>You are logged in as <%# Container.UserName %>
-                    <a class=ui-ciapi-button href="https://ciapipreprod.cityindextest9.co.uk/tp/fx/?UserName=<%# Container.UserName %>&Session=<%# Container.Session %>&CultureId=69">Launch platform</a>
+                    <asp:HyperLink ID="LaunchLink" runat="server" CssClass="ui-ciapi-button" />
                 </LoggedInTemplate>
                  <AnonymousTemplate>
-                     <ul>                        <li><a href="Logon.aspx" class=ui-ciapi-button>Log On</a></li>                        <li><a href="http://www.applyforanaccount.com/citestaccount/" class=ui-ciapi-button-yellow>Apply Now</a></li>                        <li class="rsp-toggle-hide rsp-fl-r"><a href="#">Contact Us</a></li>                    </ul>                </AnonymousTemplate>
+                     <ul>
+                        <li><asp:HyperLink ID="LogonLink" runat="server" NavigateUrl="~/Logon.aspx" CssClass="ui-ciapi-button" /></li>
+                        <li><asp:HyperLink ID="ApplyLink" runat="server" NavigateUrl="http://www.applyforanaccount.com/citestaccount/" CssClass="ui-ciapi-button-yellow"/></li>
+                        <li class="rsp-toggle-hide rsp-fl-r"><a href="#">Contact Us</a></li>
+                    </ul>
+                </AnonymousTemplate>
             </cc1:LoginView>    
 
-    </nav>
-    <div class=logo>
-        <h1 class=title><a href="#">CI Responsive Design</a></h1>
-        <p class=tagline>Content view across multiple devices</p>
-    </div>
-
-    <nav class=nav-primary>
-        <ul>
-            <li><a href="#">Spread Betting</a></li>
-            <li><a href="#">CFD Trading</a></li>
-            <li><a href="#">Range of Markets</a></li>
-            <li><a href="#">Trading Platform</a></li>
-            <li class=active><a href="#">Learn to Trade</a></li>
-            <li><a href="#">Market Analysis</a></li>
-            <li class=rsp-toggle-hide><a href="#">Contact Us</a></li>
-        </ul>
-    </nav>
+    </nav>
+
+    <div class=logo>
+
+        <h1 class=title><a href="#">CI Responsive Design</a></h1>
+
+        <p class=tagline>Content view across multiple devices</p>
+
+    </div>
+
+
+
+    <nav class=nav-primary>
+
+        <ul>
+
+            <li><a href="#">Spread Betting</a></li>
+
+            <li><a href="#">CFD Trading</a></li>
+
+            <li><a href="#">Range of Markets</a></li>
+
+            <li><a href="#">Trading Platform</a></li>
+
+            <li class=active><a href="#">Learn to Trade</a></li>
+
+            <li><a href="#">Market Analysis</a></li>
+
+            <li class=rsp-toggle-hide><a href="#">Contact Us</a></li>
+
+        </ul>
+
+    </nav>
+
 </header>
-    <aside class="authentication">        <div id="switcher_wrap" style="margin-bottom:10px">
+    <aside class="authentication">
+        <div id="switcher_wrap" style="margin-bottom:10px">
             <!-- Themeswitcher tool -->
             <div id="switcher"></div>
-        </div>        <asp:ContentPlaceHolder ID="AuthenticationAsideContent" runat="server" />
+        </div>
+        <asp:ContentPlaceHolder ID="AuthenticationAsideContent" runat="server" />
     </aside>
     <div class="featured">
         <asp:ContentPlaceHolder ID="FeaturedContent" runat="server" />
@@ -89,10 +116,28 @@
     </div>
         
         
-        <aside class="sidebar">            <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
-                    </aside>
-   <footer>    <ul>        <li><a href="#">About Us</a></li>        <li><a href="#">Help & Support</a></li>        <li><a href="#">City Index Global Partnerships</a></li>        <li><a href="#">Terms and Policies</a></li>        <li><a href="#">Press Area</a></li>        <li><a href="#">Careers</a></li>        <li><a href="#">Glossary</a></li>        <li><a href="#">Site Map</a></li>    </ul>    <p>Spread betting and CFD trading are leveraged products which can result in losses greater than your initial        deposit. Ensure you fully understand the risks.</p>
-    <p>*Spread betting and CFD trading are exempt from UK stamp duty. Spread betting is also exempt from UK Capital        Gains Tax. However, tax laws are subject to change and depend on individual circumstances. Please seek        independent advice if necessary.</p>
+        <aside class="sidebar">
+            <asp:ContentPlaceHolder ID="SidebarContent" runat="server" />
+            
+        </aside>
+   <footer>
+    <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Help & Support</a></li>
+        <li><a href="#">City Index Global Partnerships</a></li>
+        <li><a href="#">Terms and Policies</a></li>
+        <li><a href="#">Press Area</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Glossary</a></li>
+        <li><a href="#">Site Map</a></li>
+    </ul>
+    <p>Spread betting and CFD trading are leveraged products which can result in losses greater than your initial
+        deposit. Ensure you fully understand the risks.</p>
+
+    <p>*Spread betting and CFD trading are exempt from UK stamp duty. Spread betting is also exempt from UK Capital
+        Gains Tax. However, tax laws are subject to change and depend on individual circumstances. Please seek
+        independent advice if necessary.</p>
+
 </footer>
     </form>
 </body>

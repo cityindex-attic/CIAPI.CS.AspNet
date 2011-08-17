@@ -14,11 +14,17 @@ namespace TestWebApplication
         }
 
 		protected void Page_Load(object sender, EventArgs e)
-		{
-		    if(!AuthenticationWidget.IsAuthenticated)
+        {
+            var authenticationStateChecker = new AuthenticationStateChecker(this);
+
+            if (!authenticationStateChecker.IsAuthenticated)
 		    {
 		       throw new AuthenticationException("You must be authenticated to view this page"); 
 		    }
+
+           
+            LoginStateLiteral.Text = string.Format("You are logged in as {0}", authenticationStateChecker.UserName);
+
 		}
 	}
 }
