@@ -55,6 +55,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\flXHR-1.0.6\checkplayer.js" />
+    <Content Include="js\flXHR-1.0.6\flensed.js" />
+    <Content Include="js\flXHR-1.0.6\flXHR.js" />
+    <Content Include="js\flXHR-1.0.6\flXHR.swf" />
+    <Content Include="js\flXHR-1.0.6\flXHR.vbs" />
+    <Content Include="js\flXHR-1.0.6\swfobject.js" />
+    <Content Include="js\flXHR-1.0.6\updateplayer.swf" />
     <Content Include="js\html5shim.js" />
     <Content Include="js\jquery-ui\1.8.11\css\dark-hive\images\ui-bg_flat_30_cccccc_40x100.png" />
     <Content Include="js\jquery-ui\1.8.11\css\dark-hive\images\ui-bg_flat_50_5c5c5c_40x100.png" />

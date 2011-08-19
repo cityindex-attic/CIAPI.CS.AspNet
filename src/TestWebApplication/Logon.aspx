@@ -5,11 +5,10 @@
 <asp:Content runat="server" ID="Content1" ContentPlaceHolderID="FeaturedContent">
 
         <cc1:Authentication ID="AuthenticationWidget" runat="server" 
-            IsDebug="true" 
-            UseMockData="true" 
             Width="400"
             AfterLogOnNavigateUrl="~/MyAccount.aspx"
-            AfterLogOffNavigateUrl="~/Default.aspx" />
+            AfterLogOffNavigateUrl="~/Default.aspx" 
+            IsDebug="true" />
 </asp:Content>
 
 <asp:Content runat="server" ID="BodyContent1" ContentPlaceHolderID="BodyContent">

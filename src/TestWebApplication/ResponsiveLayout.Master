@@ -11,6 +11,10 @@
     <link type="text/css" href="js/themes/ci.default/ci.default.css" rel="Stylesheet" />
     <link rel="stylesheet" media="all" href="js/layouts/responsive/responsive.layout.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Load flash based XHR for older browsers -->
+    <script>var flensed = { base_path: "js/flXHR-1.0.6/" };</script>
+    <script src="js/flXHR-1.0.6/flXHR.js"></script>
 </head>
 <body lang="en">
     <form id="form1" runat="server">

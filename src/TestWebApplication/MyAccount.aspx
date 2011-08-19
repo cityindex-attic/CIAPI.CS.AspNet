@@ -26,10 +26,10 @@ CodeBehind="MyAccount.aspx.cs" Inherits="TestWebApplication.ProtectedPage" %>
 
 <asp:Content runat="server" ID="Content2" ContentPlaceHolderID="AuthenticationAsideContent">
     <cc1:Authentication ID="AuthenticationWidget" runat="server" 
-        IsDebug="true" 
-        UseMockData="true" 
         Width="200"
-        AfterLogOffNavigateUrl="~/Default.aspx" />
+        AfterLogOffNavigateUrl="~/Default.aspx" 
+        IsDebug="true"
+/>
 </asp:Content>
 
 <asp:Content runat="server" ID="Content4" ContentPlaceHolderID="SidebarContent">

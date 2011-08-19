@@ -2,6 +2,7 @@
 <script type="text/javascript">
     $("#customAuthWidgetTemplate").template("customAuthWidgetTemplate"); //compile & name the template
     $(document).ready(function () {
+        CIAPI.connection.ServiceUri = "{serviceUri}";
         $('#AuthenticationWidget_{clientId}').CIAPI_widget_AuthenticationWidget(
         {
             width: '{width}',

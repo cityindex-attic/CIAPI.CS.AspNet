@@ -44,13 +44,16 @@ namespace CIAPI.AspNet.Controls.Authentication
 
         protected override void RenderContents(HtmlTextWriter output)
         {
+            if (string.IsNullOrEmpty(ServiceUri)) throw new ArgumentNullException("CIAPI.AspNet.Controls.Authentication.ServiceUri", "You must set the ServiceUri property to the Uri of the CityIndex Trading Api (e.g: https://ciapi.cityindex.com/TradingAPI )");
             var content = ResourceUtil.ReadText(GetType(), "Body.html").ReplaceWebControlTemplateVars(this);
             content = content
                 .Replace("{afterLogOn}", GetAfterLogOnScript())
-                .Replace("{afterLogOff}", GetAfterLogOffScript());
+                .Replace("{afterLogOff}", GetAfterLogOffScript())
+                .Replace("{serviceUri}", ServiceUri);
             output.Write(content);
         }
 
+	   
 	    private string GetAfterLogOffScript()
 	    {
 	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
@@ -70,7 +73,7 @@ namespace CIAPI.AspNet.Controls.Authentication
             return ""; 
 	    }
 
-
+        public string ServiceUri { get; set; }
 	    public bool IsDebug { get; set; }
 	    public bool UseMockData { get; set; }
         public string AfterLogOnNavigateUrl { get; set; }

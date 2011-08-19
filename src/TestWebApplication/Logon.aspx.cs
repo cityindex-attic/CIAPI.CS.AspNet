@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Configuration;
 using CIAPI.AspNet.Controls.Core;
 
 namespace TestWebApplication
@@ -15,12 +11,14 @@ namespace TestWebApplication
             base.OnInit(e);
             AuthenticationWidget.JavaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
             AuthenticationWidget.CssRegistrar = new ControlInjectorCssRegistrar(Header);
+            AuthenticationWidget.ServiceUri = ConfigurationManager.AppSettings["ServiceUri"];
+            AuthenticationWidget.UseMockData = Boolean.Parse(ConfigurationManager.AppSettings["UserMockData"]);
         }
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
     }
 }
