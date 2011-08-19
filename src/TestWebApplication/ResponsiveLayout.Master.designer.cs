@@ -40,40 +40,13 @@ namespace TestWebApplication {
         protected global::System.Web.UI.ScriptManager ScriptManager;
         
         /// <summary>
-        /// LoginView1 control.
+        /// AuthenticationStatus1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CIAPI.AspNet.Controls.LoginView.LoginView LoginView1;
-        
-        /// <summary>
-        /// LaunchLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LaunchLink;
-        
-        /// <summary>
-        /// LogonLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink LogonLink;
-        
-        /// <summary>
-        /// ApplyLink control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink ApplyLink;
+        protected global::CIAPI.AspNet.Controls.Authentication.AuthenticationStatus AuthenticationStatus1;
         
         /// <summary>
         /// AuthenticationAsideContent control.

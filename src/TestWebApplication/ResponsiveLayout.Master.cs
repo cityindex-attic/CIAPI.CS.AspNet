@@ -1,32 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Configuration;
+using CIAPI.AspNet.Controls.Core;
 
 namespace TestWebApplication
 {
     public partial class Site1 : System.Web.UI.MasterPage
     {
-        private const int EnglishCultureId = 69;
         protected void Page_Load(object sender, EventArgs e)
         {
-           LoginView1.DataBind();
-           
-           //You can only access the controls inside a LoginView template after DataBind has been called.
-           if (LoginView1.IsAuthenticated)
-           {
-               LaunchLink.Text = "Launch platform";
-               LaunchLink.NavigateUrl =
-                   string.Format("https://ciapipreprod.cityindextest9.co.uk/tp/fx/?UserName={0}&Session={1}&CultureId={2}", 
-                   LoginView1.UserName, LoginView1.Session, EnglishCultureId );
-           }
-           else
-           {
-               LogonLink.Text = "Log On";
-               ApplyLink.Text = "Apply for an account";
-           }
+            AuthenticationStatus1.JavaScriptRegistrar = new ScriptManagerJavaScriptRegistrar();
+            AuthenticationStatus1.CssRegistrar = new ControlInjectorCssRegistrar(this.Page.Header);
+            AuthenticationStatus1.ServiceUri = ConfigurationManager.AppSettings["ServiceUri"];
+            AuthenticationStatus1.UseMockData = Boolean.Parse(ConfigurationManager.AppSettings["UserMockData"]);
+
+            AuthenticationStatus1.LaunchPlatformUri =
+                string.Format("https://ciapipreprod.cityindextest9.co.uk/tp/fx/?UserName={0}&Session={1}&AuthenticationUri={2}",
+                                AuthenticationStatus1.UserName, 
+                                AuthenticationStatus1.Session, 
+                                Server.UrlEncode(AuthenticationStatus1.AuthenticationUri));
+
+          
         }
     }
 }

@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\AuthenticationStatus.cs" />
     <Compile Include="Authentication\WebResources.cs" />
     <Compile Include="Core\AuthenticationStateChecker.cs" />
     <Compile Include="Core\ControlInjectorCssRegistrar.cs" />
@@ -89,7 +90,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Authentication\css\CIAPI.Authentication.min.css" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Authentication\AuthenticationStatus.html" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MarketGrid\js\libs\CIAPI.js" />
   </ItemGroup>

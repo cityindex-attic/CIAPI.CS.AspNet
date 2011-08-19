@@ -5,8 +5,8 @@ using CIAPI.AspNet.Controls.Core;
 
 namespace CIAPI.AspNet.Controls.Authentication
 {
-	[DefaultProperty("Text")]
-	[ToolboxData("<{0}:ServerControl1 runat=server></{0}:ServerControl1>")]
+	[DefaultProperty("Width")]
+    [ToolboxData("<{0}:AuthenticationWidget1 runat=server></{0}:AuthenticationWidget1>")]
 	public class Authentication : WebControlBase
 	{
 	    private readonly AuthenticationStateChecker _authenticationStateChecker;
@@ -54,7 +54,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         }
 
 	   
-	    private string GetAfterLogOffScript()
+	    protected string GetAfterLogOffScript()
 	    {
 	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
 	        {
@@ -64,7 +64,7 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    }
 
 	    
-	    private string GetAfterLogOnScript()
+	    protected string GetAfterLogOnScript()
 	    {
             if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
             {

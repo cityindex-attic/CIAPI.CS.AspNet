@@ -1,6 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="ResponsiveLayout.Master.cs" Inherits="TestWebApplication.Site1" %>
 
 <%@ Register Assembly="CIAPI.AspNet.Controls" Namespace="CIAPI.AspNet.Controls.LoginView" TagPrefix="cc1" %>
+<%@ Register Assembly="CIAPI.AspNet.Controls" Namespace="CIAPI.AspNet.Controls.Authentication" TagPrefix="cc1" %>
 
 <!doctype html>
 <html>
@@ -55,21 +56,9 @@
     <header>
 
     <nav class=nav-feature>
-
-         <cc1:LoginView ID="LoginView1" runat="server">
-                <LoggedInTemplate>
-                    <p>You are logged in as <%# Container.UserName %>
-                    <asp:HyperLink ID="LaunchLink" runat="server" CssClass="ui-ciapi-button" />
-                </LoggedInTemplate>
-                 <AnonymousTemplate>
-                     <ul>
-                        <li><asp:HyperLink ID="LogonLink" runat="server" NavigateUrl="~/Logon.aspx" CssClass="ui-ciapi-button" /></li>
-                        <li><asp:HyperLink ID="ApplyLink" runat="server" NavigateUrl="http://www.applyforanaccount.com/citestaccount/" CssClass="ui-ciapi-button-yellow"/></li>
-                        <li class="rsp-toggle-hide rsp-fl-r"><a href="#">Contact Us</a></li>
-                    </ul>
-                </AnonymousTemplate>
-            </cc1:LoginView>    
-
+        <cc1:AuthenticationStatus ID="AuthenticationStatus1" runat="server" Width="200px"
+            AfterLogOffNavigateUrl="~/Default.aspx" 
+            IsDebug="true" />
     </nav>
 
     <div class=logo>

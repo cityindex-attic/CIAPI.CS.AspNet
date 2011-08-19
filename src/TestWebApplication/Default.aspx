@@ -39,7 +39,7 @@
     <li>Tight spread from 1 point</li>
     <li>Low margins from 1%</li>
     <li>Spread betting & CFD trading from one platform</li>
-    <p><a href="#" class=ui-ciapi-button>Apply now</a></p>
+    <p><a href="#" class="ui-ciapi-button-yellow">Apply now</a></p>
 </ul>
 </asp:Content>
 

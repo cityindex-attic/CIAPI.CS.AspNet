@@ -1,0 +1,43 @@
+﻿<div id="AuthenticationStatusWidget_{clientId}"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        CIAPI.connection.ServiceUri = CIAPI.connection.ServiceUri || "{serviceUri}";
+
+        $("#{clientId}template").template("template{clientId}"); //compile & name the template
+        $('#AuthenticationStatusWidget_{clientId}').CIAPI_widget_AuthenticationWidget(
+        {
+            template: 'template{clientId}',
+            width: '{width}',
+            afterLogOff: function (data) {
+                {afterLogOff}
+            }
+        });
+        $('.ui-ciapi-button').button({
+            icons: {
+                primary: "ui-icon-circle-triangle-e"
+            }
+        });
+        $('.ui-ciapi-button-yellow').button({
+            icons: {
+                primary: "ui-icon-circle-triangle-e"
+            }
+        });
+    });
+</script>
+<script id="{clientId}template" type="text/x-jquery-tmpl">
+    <div class="ui-ciapi-authentication-status">
+        <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p>
+        <div class="ui-ciapi-logon-view" data-bind="visible: activeView() === 'LogOn'">    
+            <a href="#" class="ui-ciapi-button">Log On</a>
+            <a href="#" class="ui-ciapi-button-yellow">Apply Now</a>
+        </div>
+        <div class="ui-ciapi-logoff-view" data-bind="visible: activeView() === 'LogOff'">
+                <p>You are logged in as <span data-bind="text: username"/>
+                <a href="#" data-bind="click: doLogOff">Log Out</a>
+                <a href="#" class="ui-ciapi-button">Launch platform</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</script>
+
