@@ -28,13 +28,13 @@
     <div class="ui-ciapi-authentication-status">
         <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p>
         <div class="ui-ciapi-logon-view" data-bind="visible: activeView() === 'LogOn'">    
-            <a href="#" class="ui-ciapi-button">Log On</a>
-            <a href="#" class="ui-ciapi-button-yellow">Apply Now</a>
+            <a href="{LogOnUri}" class="ui-ciapi-button">Log On</a>
+            <a href="{ApplyNowUri}" class="ui-ciapi-button-yellow">Apply Now</a>
         </div>
         <div class="ui-ciapi-logoff-view" data-bind="visible: activeView() === 'LogOff'">
                 <p>You are logged in as <span data-bind="text: username"/>
                 <a href="#" data-bind="click: doLogOff">Log Out</a>
-                <a href="#" class="ui-ciapi-button">Launch platform</a>
+                <a href="{LaunchPlatformUri}" class="ui-ciapi-button">Launch platform</a>
                 </p>
             </div>
         </div>

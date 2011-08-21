@@ -15,11 +15,15 @@ namespace CIAPI.AspNet.Controls.Authentication
             var content = ResourceUtil.ReadText(GetType(), "AuthenticationStatus.html").ReplaceWebControlTemplateVars(this);
             content = content
               .Replace("{afterLogOff}", GetAfterLogOffScript())
-              .Replace("{serviceUri}", ServiceUri);
+              .Replace("{serviceUri}", ServiceUri)
+              .Replace("{LogOnUri}", LogOnUri)
+              .Replace("{ApplyNowUri}", ApplyNowUri)
+              .Replace("{LaunchPlatformUri}", LaunchPlatformUri);
             output.Write(content);
         }
 
+        public string LogOnUri { get; set; }
+        public string ApplyNowUri { get; set; }
         public string LaunchPlatformUri { get; set; }
-        public string AuthenticationUri { get; set; }
     }
 }
