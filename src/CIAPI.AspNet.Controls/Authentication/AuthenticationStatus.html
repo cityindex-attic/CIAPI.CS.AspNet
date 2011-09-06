@@ -12,30 +12,36 @@
                 {afterLogOff}
             }
         });
-        $('.ui-ciapi-button').button({
-            icons: {
-                primary: "ui-icon-circle-triangle-e"
-            }
-        });
-        $('.ui-ciapi-button-yellow').button({
-            icons: {
-                primary: "ui-icon-circle-triangle-e"
-            }
-        });
     });
 </script>
 <script id="{clientId}template" type="text/x-jquery-tmpl">
     <div class="ui-ciapi-authentication-status">
         <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p>
         <div class="ui-ciapi-logon-view" data-bind="visible: activeView() === 'LogOn'">    
-            <a href="{LogOnUri}" class="ui-ciapi-button">Log On</a>
-            <a href="{ApplyNowUri}" class="ui-ciapi-button-yellow">Apply Now</a>
+            <div class="loginbtn">
+                <a href="{LogOnUri}" class="globallogin">
+                    <span>{LogInButtonText}</span>
+                </a>
+            </div>
+            <div class="applynowbtn">
+                <a href="{ApplyNowUri}" class="globalapply">
+                    <span>{ApplyNowButtonText}</span>
+                </a>
+            </div>
         </div>
-        <div class="ui-ciapi-logoff-view" data-bind="visible: activeView() === 'LogOff'">
-                <p>You are logged in as <span data-bind="text: username"/>
-                <a href="#" data-bind="click: doLogOff">Log Out</a>
-                <a href="{LaunchPlatformUri}" class="ui-ciapi-button">Launch platform</a>
-                </p>
+        <div class="ui-ciapi-logoff-view" data-bind="visible: activeView() === 'LogOff'">            
+            <div class="loggedInUsername">
+                {LoggedInAsText}<span data-bind="text: username"/>
+            </div>
+            <div class="logoutBtn">
+                <a href="#" data-bind="click: doLogOff" class="logout">
+                    <span>{LogOutButtonText}</span>
+                </a>
+            </div>
+            <div class="launchPlatformBtn">
+                <a href="{LaunchPlatformUri}" onclick="javascript:window.open('{LaunchPlatformUri}', '', 'width=975,height=575'); return false;" class="launchPlatform">
+                    <span>{LaunchPlatformButtonText}</span>
+                </a>
             </div>
         </div>
     </div>

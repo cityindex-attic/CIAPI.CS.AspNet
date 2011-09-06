@@ -1,27 +1,65 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Web.UI;
 using CIAPI.AspNet.Controls.Core;
 
 namespace CIAPI.AspNet.Controls.Authentication
 {
-	[DefaultProperty("Width")]
+    [DefaultProperty("Width")]
     [ToolboxData("<{0}:AuthenticationWidget1 runat=server></{0}:AuthenticationWidget1>")]
-	public class Authentication : WebControlBase
-	{
-	    private readonly AuthenticationStateChecker _authenticationStateChecker;
+    public class Authentication : WebControlBase
+    {
+        public enum SupportedLanguage { English, Polish }
 
+	    #region Attributes
+        
+        private readonly AuthenticationStateChecker _authenticationStateChecker;
+
+        #endregion
+
+        #region Properties
+
+        public string ServiceUri { get; set; }
+	    
+        public bool IsDebug { get; set; }
+	    public bool UseMockData { get; set; }
+        
+        public string AfterLogOnNavigateUrl { get; set; }
+        public string AfterLogOffNavigateUrl { get; set; }
+        
+        public string LaunchPlatformUri { get; set; }
+        protected bool ShouldLaunchPlatformAfterLogOn { get; set; }
+
+	    public string UserName { get { return _authenticationStateChecker.UserName; } }
+	    public string Session { get { return _authenticationStateChecker.Session; } }
+	    public bool IsAuthenticated { get  { return _authenticationStateChecker.IsAuthenticated; } }
+
+        /// <summary>
+        /// The culture to render the UI. E.g. "en", "pl"
+        /// </summary>
+        public string UiCulture { get; set; }
+
+        #endregion
+
+        #region Constructors
+        
         public Authentication()
         {
             UseMockData = false;
+            ShouldLaunchPlatformAfterLogOn = true;
             _authenticationStateChecker = new AuthenticationStateChecker(this);
         }
 
-	    protected override void OnPreRender(EventArgs e)
+        #endregion
+
+        #region WebControlBase Members
+        
+        protected override void OnPreRender(EventArgs e)
 		{
             base.OnPreRender(e);
 
-            CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Controls.Authentication", "css.ci.default.ci.default.css");
+            //CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Controls.Authentication", "css.ci.default.ci.default.css");
             
             if (IsDebug)
             {
@@ -44,17 +82,41 @@ namespace CIAPI.AspNet.Controls.Authentication
 
         protected override void RenderContents(HtmlTextWriter output)
         {
-            if (string.IsNullOrEmpty(ServiceUri)) throw new ArgumentNullException("CIAPI.AspNet.Controls.Authentication.ServiceUri", "You must set the ServiceUri property to the Uri of the CityIndex Trading Api (e.g: https://ciapi.cityindex.com/TradingAPI )");
-            var content = ResourceUtil.ReadText(GetType(), "AuthenticationWidget.html").ReplaceWebControlTemplateVars(this);
+            if (string.IsNullOrEmpty(ServiceUri)) 
+                throw new ArgumentNullException("CIAPI.AspNet.Controls.Authentication.ServiceUri", 
+                                                "You must set the ServiceUri property to the Uri of the CityIndex Trading Api (e.g: https://ciapi.cityindex.com/TradingAPI )");
+            
+            var content = ResourceUtil.ReadText(GetType(), "AuthenticationWidget.html")
+                            .ReplaceWebControlTemplateVars(this);
+
+            #region Localize Control
+
+            App_GlobalResources.AuthenticationWidget.Culture = !string.IsNullOrEmpty(UiCulture) 
+                                                                    ? new CultureInfo(UiCulture) 
+                                                                    : new CultureInfo(string.Empty);
+
+            content = content
+                .Replace("{UsernameText}", App_GlobalResources.AuthenticationWidget.UsernameText)
+                .Replace("{PasswordText}", App_GlobalResources.AuthenticationWidget.PasswordText)
+                .Replace("{LogInButtonText}", App_GlobalResources.AuthenticationWidget.LogInButtonText)
+                .Replace("{LoggedInAsText}", App_GlobalResources.AuthenticationWidget.LoggedInAsText)
+                .Replace("{LogOutButtonText}", App_GlobalResources.AuthenticationWidget.LogOutButtonText);
+
+            #endregion
+
             content = content
                 .Replace("{afterLogOn}", GetAfterLogOnScript())
                 .Replace("{afterLogOff}", GetAfterLogOffScript())
                 .Replace("{serviceUri}", ServiceUri);
+
             output.Write(content);
         }
 
-	   
-	    protected string GetAfterLogOffScript()
+        #endregion
+
+        #region Helper Methods
+
+        protected string GetAfterLogOffScript()
 	    {
 	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
 	        {
@@ -62,45 +124,25 @@ namespace CIAPI.AspNet.Controls.Authentication
 	        }
 	        return "";
 	    }
-
 	    
 	    protected string GetAfterLogOnScript()
 	    {
-            if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
+	        var afterLogOnScript = "";
+	        
+            if (ShouldLaunchPlatformAfterLogOn)
             {
-                return "window.location.href='" + ResolveUrl(AfterLogOnNavigateUrl) + "';";
+                afterLogOnScript += string.Format("window.open('{0}','','width=975,height=575');", LaunchPlatformUri);     
             }
-            return ""; 
-	    }
-
-        public string ServiceUri { get; set; }
-	    public bool IsDebug { get; set; }
-	    public bool UseMockData { get; set; }
-        public string AfterLogOnNavigateUrl { get; set; }
-        public string AfterLogOffNavigateUrl { get; set; }
-
-	    public string UserName
-	    {
-	        get {
-                return _authenticationStateChecker.UserName;
-	        }
-	    }
-
-	    public string Session
-        {
-            get
+	        
+	        if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
             {
-                return _authenticationStateChecker.Session;
+                afterLogOnScript += "window.location.href='" + ResolveUrl(AfterLogOnNavigateUrl) + "'";
             }
+            return afterLogOnScript;
         }
 
-	    public bool IsAuthenticated
-	    {
-	        get 
-            {
-                return _authenticationStateChecker.IsAuthenticated;
-	        }
-	    }
-	}
+
+        #endregion
+    }
 
 }
