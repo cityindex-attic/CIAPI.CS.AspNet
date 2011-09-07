@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Web.UI.WebControls;
 
 namespace CIAPI.AspNet.Controls.Core
@@ -6,6 +7,7 @@ namespace CIAPI.AspNet.Controls.Core
     {
         private IJavaScriptRegistrar _javaScriptRegistrar;
         private ICssRegistrar _cssRegistrar;
+        private CultureInfo _uiCulture;
 
         /// <summary>
         /// The class that can include Javascript references in the page
@@ -42,6 +44,16 @@ namespace CIAPI.AspNet.Controls.Core
             {
                 _cssRegistrar = value;
             }
+        }
+
+        /// <summary>
+        /// The culture of the control
+        /// If not set, defaults to the current thread culture
+        /// </summary>
+        public CultureInfo UiCulture
+        {
+            get { return _uiCulture ?? (_uiCulture = System.Threading.Thread.CurrentThread.CurrentUICulture); }
+            set { _uiCulture = value; }
         }
     }
 }

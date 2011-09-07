@@ -45,22 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\AuthenticationStatus.pl.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthenticationStatus.pl.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\AuthenticationStatus1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AuthenticationStatus.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\AuthenticationWidget.pl.Designer.cs">
+    <Compile Include="App_GlobalResources\AuthenticationWidget.pl2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthenticationWidget.pl.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\AuthenticationWidget.Designer.cs">
+    <Compile Include="App_GlobalResources\AuthenticationWidget1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AuthenticationWidget.resx</DependentUpon>
@@ -86,14 +76,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources\AuthenticationStatus.pl.resx">
-      <LastGenOutput>AuthenticationStatus.pl.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="App_GlobalResources\AuthenticationStatus.resx">
-      <LastGenOutput>AuthenticationStatus1.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="App_GlobalResources\AuthenticationWidget.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>AuthenticationWidget1.Designer.cs</LastGenOutput>

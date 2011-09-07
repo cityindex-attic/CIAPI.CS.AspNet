@@ -117,19 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LoggedInAsText" xml:space="preserve">
+  <data name="you_are_logged_in_as" xml:space="preserve">
     <value>You are logged in as</value>
   </data>
-  <data name="LogInButtonText" xml:space="preserve">
+  <data name="logon" xml:space="preserve">
     <value>Log In</value>
   </data>
-  <data name="LogOutButtonText" xml:space="preserve">
+  <data name="logout" xml:space="preserve">
     <value>Log Out</value>
   </data>
-  <data name="PasswordText" xml:space="preserve">
+  <data name="password" xml:space="preserve">
     <value>Password</value>
   </data>
-  <data name="UsernameText" xml:space="preserve">
+  <data name="username" xml:space="preserve">
     <value>UserName</value>
+  </data>
+  <data name="apply_now" xml:space="preserve">
+    <value>Apply Now</value>
+  </data>
+  <data name="launch_platform" xml:space="preserve">
+    <value>Launch Platform</value>
   </data>
 </root>

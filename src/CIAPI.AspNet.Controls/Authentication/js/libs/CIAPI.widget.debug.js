@@ -9270,7 +9270,7 @@ var CIAPI = CIAPI || {};
     };
     
     $.widget.getCurrentCulture = function() {
-        return Globalize.culture().name;
+        return Globalize.culture();
     };
 
     $.widget.culture = function( selector ) {

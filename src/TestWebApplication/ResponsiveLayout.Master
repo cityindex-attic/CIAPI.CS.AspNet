@@ -57,8 +57,7 @@
 
     <nav class=nav-feature>
         <cc1:AuthenticationStatus ID="AuthenticationStatus1" runat="server" Width="200px"
-            AfterLogOffNavigateUrl="~/Default.aspx" 
-            IsDebug="true" />
+            AfterLogOffNavigateUrl="~/Default.aspx" />
     </nav>
 
     <div class=logo>

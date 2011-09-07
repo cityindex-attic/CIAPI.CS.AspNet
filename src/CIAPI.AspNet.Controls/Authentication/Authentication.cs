@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Globalization;
+using System.Reflection;
 using System.Web.UI;
 using CIAPI.AspNet.Controls.Core;
 
@@ -10,8 +11,6 @@ namespace CIAPI.AspNet.Controls.Authentication
     [ToolboxData("<{0}:AuthenticationWidget1 runat=server></{0}:AuthenticationWidget1>")]
     public class Authentication : WebControlBase
     {
-        public enum SupportedLanguage { English, Polish }
-
 	    #region Attributes
         
         private readonly AuthenticationStateChecker _authenticationStateChecker;
@@ -35,11 +34,6 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    public string Session { get { return _authenticationStateChecker.Session; } }
 	    public bool IsAuthenticated { get  { return _authenticationStateChecker.IsAuthenticated; } }
 
-        /// <summary>
-        /// The culture to render the UI. E.g. "en", "pl"
-        /// </summary>
-        public string UiCulture { get; set; }
-
         #endregion
 
         #region Constructors
@@ -47,6 +41,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         public Authentication()
         {
             UseMockData = false;
+            IsDebug = false;
             ShouldLaunchPlatformAfterLogOn = true;
             _authenticationStateChecker = new AuthenticationStateChecker(this);
         }
@@ -59,8 +54,6 @@ namespace CIAPI.AspNet.Controls.Authentication
 		{
             base.OnPreRender(e);
 
-            //CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Controls.Authentication", "css.ci.default.ci.default.css");
-            
             if (IsDebug)
             {
                 JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.libs.CIAPI.debug.js");
@@ -89,25 +82,13 @@ namespace CIAPI.AspNet.Controls.Authentication
             var content = ResourceUtil.ReadText(GetType(), "AuthenticationWidget.html")
                             .ReplaceWebControlTemplateVars(this);
 
-            #region Localize Control
-
-            App_GlobalResources.AuthenticationWidget.Culture = !string.IsNullOrEmpty(UiCulture) 
-                                                                    ? new CultureInfo(UiCulture) 
-                                                                    : new CultureInfo(string.Empty);
+            content = LocaliseControl(content);
 
             content = content
-                .Replace("{UsernameText}", App_GlobalResources.AuthenticationWidget.UsernameText)
-                .Replace("{PasswordText}", App_GlobalResources.AuthenticationWidget.PasswordText)
-                .Replace("{LogInButtonText}", App_GlobalResources.AuthenticationWidget.LogInButtonText)
-                .Replace("{LoggedInAsText}", App_GlobalResources.AuthenticationWidget.LoggedInAsText)
-                .Replace("{LogOutButtonText}", App_GlobalResources.AuthenticationWidget.LogOutButtonText);
-
-            #endregion
-
-            content = content
-                .Replace("{afterLogOn}", GetAfterLogOnScript())
-                .Replace("{afterLogOff}", GetAfterLogOffScript())
-                .Replace("{serviceUri}", ServiceUri);
+                .Replace("<%=afterLogOn%>", GetAfterLogOnScript())
+                .Replace("<%=afterLogOn%>", GetAfterLogOnScript())
+                .Replace("<%=afterLogOff%>", GetAfterLogOffScript())
+                .Replace("<%=serviceUri%>", ServiceUri);
 
             output.Write(content);
         }
@@ -143,6 +124,37 @@ namespace CIAPI.AspNet.Controls.Authentication
 
 
         #endregion
+
+        protected string LocaliseControl(string content)
+        {
+            App_GlobalResources.AuthenticationWidget.Culture = UiCulture;
+            
+            var translations = string.Format("{{\"{0}\":{{", UiCulture.Name);
+            foreach (var property in typeof(App_GlobalResources.AuthenticationWidget).GetProperties(BindingFlags.NonPublic | BindingFlags.Static))
+            {
+                if (property.PropertyType == typeof(string))
+                {
+                    translations += string.Format("\"{0}\":\"{1}\",", property.Name,
+                        property.GetValue(null,null));
+                }
+                
+            }
+            translations = translations.TrimEnd(new[] {','});
+            translations += "}}";
+
+            content = content
+                .Replace("<%=UiCulture%>", UiCulture.Name)
+                .Replace("<%=translations%>", translations);
+
+//                .Replace("<%=PasswordText%>", App_GlobalResources.AuthenticationWidget.PasswordText)
+//                .Replace("<%=LogInButtonText%>", App_GlobalResources.AuthenticationWidget.LogInButtonText)
+//                .Replace("<%=LoggedInAsText%>", App_GlobalResources.AuthenticationWidget.LoggedInAsText)
+//                .Replace("<%=LogOutButtonText%>", App_GlobalResources.AuthenticationWidget.LogOutButtonText)
+//                .Replace("<%=ApplyNowButtonText%>", App_GlobalResources.AuthenticationStatus.ApplyNowButtonText)
+//                .Replace("<%=LaunchPlatformButtonText%>", App_GlobalResources.AuthenticationStatus.LaunchPlatformButtonText);
+            
+            return content;
+        }
     }
 
 }

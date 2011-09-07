@@ -1,45 +1,47 @@
-﻿<div id="AuthenticationWidget_{clientId}"></div>
+﻿<div id="AuthenticationWidget_<%=clientId%>"></div>
 <script type="text/javascript">
     $(document).ready(function () {
-        CIAPI.connection.ServiceUri = CIAPI.connection.ServiceUri || "{serviceUri}";
+        $.widget.culture('<%=UiCulture%>');
 
-        $("#AuthenticationWidgetTemplate_{clientId}").template("AuthenticationWidgetTemplate_{clientId}"); //compile & name the template
-        $('#AuthenticationWidget_{clientId}').CIAPI_widget_AuthenticationWidget(
+        CIAPI.connection.ServiceUri = "<%=serviceUri%>";
+
+        $("#AuthenticationWidgetTemplate_<%=clientId%>").template("AuthenticationWidgetTemplate_<%=clientId%>"); //compile & name the template
+        $('#AuthenticationWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget(
         {
-            template: "AuthenticationWidgetTemplate_{clientId}",
-            width: '{width}',
+            template: "AuthenticationWidgetTemplate_<%=clientId%>",
+            width: '<%=width%>',
             afterLogOn: function (data) {
-                {afterLogOn}
+                <%=afterLogOn%>
             },
             afterLogOff: function (data) {
-                {afterLogOff}
-            }
+                <%=afterLogOff%>
+            },
+            translations: <%=translations%>
         });
     });
 </script>
-<script id="AuthenticationWidgetTemplate_{clientId}" type="text/x-jquery-tmpl">
+<script id="AuthenticationWidgetTemplate_<%=clientId%>" type="text/x-jquery-tmpl">
     <div class="ui-ciapi-authentication ui-widget ui-widget-content ui-corner-all">
         <div class="ui-ciapi-logon-view ui-corner-all" data-bind="visible: activeView() === 'LogOn'">
             <div class="ui-ciapi-authentication-content ui-widget-content ui-corner-top">
                 <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p>
                 <form class="ui-ciapi-authentication-form">
                 <fieldset>
-                    <label for="username">{UsernameText}</label>
-
+                    <label for="username">${username}</label>
                     <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">
                         <input type="text"
                                name="username"
                                id="username"
-                               class="required inputFields"
+                               class="inputFields"
                                data-bind="value: username"/>
                     </div>
-                    <label for="password">{PasswordText}</label>
+                    <label for="password">${password}</label>
 
                     <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">
                         <input type="password"
                                name="password"
                                id="password"
-                               class="required inputFields"
+                               class="inputFields"
                                data-bind="value: password"/>
                     </div>
 
@@ -47,15 +49,15 @@
                 </form>
             </div>
             <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix ui-corner-bottom">
-                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOn">{LogInButtonText}</button>
+                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOn">${logon}</button>
             </div>
         </div>
         <div class="ui-ciapi-logoff-view  ui-corner-all" data-bind="visible: activeView() === 'LogOff'">
             <div class="ui-ciapi-authentication-content ui-widget-content">
-                <p>{LoggedInAsText}<span data-bind="text: username"/></p>
+                <p>${you_are_logged_in_as}<span data-bind="text: username"/></p>
             </div>
             <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">
-                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">{LogOutButtonText}</button>
+                <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">${logoff}</button>
             </div>
         </div>
     </div>
