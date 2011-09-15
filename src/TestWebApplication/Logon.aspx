@@ -7,7 +7,7 @@
         <cc1:Authentication ID="AuthenticationWidget" runat="server" 
             Width="400"
             AfterLogOnNavigateUrl="~/MyAccount.aspx"
-            AfterLogOffNavigateUrl="~/Default.aspx"  />
+            AfterLogOffNavigateUrl="~/Default.aspx" />
 </asp:Content>
 
 <asp:Content runat="server" ID="BodyContent1" ContentPlaceHolderID="BodyContent">

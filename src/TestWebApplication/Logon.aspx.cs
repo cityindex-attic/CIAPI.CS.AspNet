@@ -14,10 +14,9 @@ namespace TestWebApplication
             AuthenticationWidget.ServiceUri = ConfigurationManager.AppSettings["ServiceUri"];
             AuthenticationWidget.UseMockData = Boolean.Parse(ConfigurationManager.AppSettings["UserMockData"]);
             AuthenticationWidget.LaunchPlatformUri =
-               string.Format("https://ciapipreprod.cityindextest9.co.uk/tp/fx/#UserName={0}&Session={1}&AuthenticationUri={2}",
-                               AuthenticationWidget.UserName,
-                               AuthenticationWidget.Session,
-                               Server.UrlEncode(Request.Url.AbsoluteUri));
+                "https://ciapipreprod.cityindextest9.co.uk/tp/fx/index.html#UserName={CIAPI.connection.UserName}&Session={CIAPI.connection.Session}&AuthenticationUri=" +
+                Server.UrlEncode(Request.Url.AbsoluteUri);
+            AuthenticationWidget.ShouldLaunchPlatformAfterLogOn = true;
         }
 
 

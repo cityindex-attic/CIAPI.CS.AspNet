@@ -42,7 +42,7 @@
                 </a>
             </div>
             <div class="launchPlatformBtn">
-                <a href="<%=LaunchPlatformUri%>" onclick="javascript:window.open('<%=LaunchPlatformUri%>', '', 'width=975,height=575'); return false;" class="launchPlatform">
+                <a href="#" onclick="javascript:var url=$('#AuthenticationStatusWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget('replaceTokens','<%=LaunchPlatformUri%>'); window.open(url, '', 'width=975,height=575'); return false;" class="launchPlatform">
                     <span>${launch_platform}</span>
                 </a>
             </div>

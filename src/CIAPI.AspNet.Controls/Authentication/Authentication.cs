@@ -28,7 +28,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         public string AfterLogOffNavigateUrl { get; set; }
         
         public string LaunchPlatformUri { get; set; }
-        protected bool ShouldLaunchPlatformAfterLogOn { get; set; }
+        public bool ShouldLaunchPlatformAfterLogOn { get; set; }
 
 	    public string UserName { get { return _authenticationStateChecker.UserName; } }
 	    public string Session { get { return _authenticationStateChecker.Session; } }
@@ -101,7 +101,7 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    {
 	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
 	        {
-	            return "window.location.href='" + ResolveUrl(AfterLogOffNavigateUrl) + "';";
+                return "window.location.href=this.replaceTokens('" + ResolveUrl(AfterLogOffNavigateUrl) + "');";
 	        }
 	        return "";
 	    }
@@ -112,12 +112,14 @@ namespace CIAPI.AspNet.Controls.Authentication
 	        
             if (ShouldLaunchPlatformAfterLogOn)
             {
-                afterLogOnScript += string.Format("window.open('{0}','','width=975,height=575');", LaunchPlatformUri);     
+                afterLogOnScript += string.Format("var popupUrl = this.replaceTokens('{0}');\n", LaunchPlatformUri);
+                afterLogOnScript += "window.open(popupUrl,'','width=975,height=575');\n";
+                //if (IsDebug) afterLogOnScript += "alert('Trying to pop up: '+popupUrl);\n"; 
             }
 	        
 	        if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
             {
-                afterLogOnScript += "window.location.href='" + ResolveUrl(AfterLogOnNavigateUrl) + "'";
+                afterLogOnScript += "window.location.href=this.replaceTokens('" + ResolveUrl(AfterLogOnNavigateUrl) + "')";
             }
             return afterLogOnScript;
         }
@@ -145,14 +147,6 @@ namespace CIAPI.AspNet.Controls.Authentication
             content = content
                 .Replace("<%=UiCulture%>", UiCulture.Name)
                 .Replace("<%=translations%>", translations);
-
-//                .Replace("<%=PasswordText%>", App_GlobalResources.AuthenticationWidget.PasswordText)
-//                .Replace("<%=LogInButtonText%>", App_GlobalResources.AuthenticationWidget.LogInButtonText)
-//                .Replace("<%=LoggedInAsText%>", App_GlobalResources.AuthenticationWidget.LoggedInAsText)
-//                .Replace("<%=LogOutButtonText%>", App_GlobalResources.AuthenticationWidget.LogOutButtonText)
-//                .Replace("<%=ApplyNowButtonText%>", App_GlobalResources.AuthenticationStatus.ApplyNowButtonText)
-//                .Replace("<%=LaunchPlatformButtonText%>", App_GlobalResources.AuthenticationStatus.LaunchPlatformButtonText);
-            
             return content;
         }
     }
