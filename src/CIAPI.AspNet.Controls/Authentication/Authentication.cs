@@ -28,7 +28,6 @@ namespace CIAPI.AspNet.Controls.Authentication
         public string AfterLogOffNavigateUrl { get; set; }
         
         public string LaunchPlatformUri { get; set; }
-        public bool ShouldLaunchPlatformAfterLogOn { get; set; }
 
 	    public string UserName { get { return _authenticationStateChecker.UserName; } }
 	    public string Session { get { return _authenticationStateChecker.Session; } }
@@ -41,8 +40,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         public Authentication()
         {
             UseMockData = false;
-            IsDebug = false;
-            ShouldLaunchPlatformAfterLogOn = true;
+            IsDebug = true;
             _authenticationStateChecker = new AuthenticationStateChecker(this);
         }
 
@@ -88,6 +86,7 @@ namespace CIAPI.AspNet.Controls.Authentication
                 .Replace("<%=afterLogOn%>", GetAfterLogOnScript())
                 .Replace("<%=afterLogOn%>", GetAfterLogOnScript())
                 .Replace("<%=afterLogOff%>", GetAfterLogOffScript())
+                .Replace("<%=LaunchPlatformUri%>", LaunchPlatformUri)
                 .Replace("<%=serviceUri%>", ServiceUri);
 
             output.Write(content);
@@ -109,13 +108,6 @@ namespace CIAPI.AspNet.Controls.Authentication
 	    protected string GetAfterLogOnScript()
 	    {
 	        var afterLogOnScript = "";
-	        
-            if (ShouldLaunchPlatformAfterLogOn)
-            {
-                afterLogOnScript += string.Format("var popupUrl = this.replaceTokens('{0}');\n", LaunchPlatformUri);
-                afterLogOnScript += "window.open(popupUrl,'','width=975,height=575');\n";
-                //if (IsDebug) afterLogOnScript += "alert('Trying to pop up: '+popupUrl);\n"; 
-            }
 	        
 	        if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
             {

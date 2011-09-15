@@ -16,7 +16,6 @@ namespace TestWebApplication
             AuthenticationWidget.LaunchPlatformUri =
                 "https://ciapipreprod.cityindextest9.co.uk/tp/fx/index.html#UserName={CIAPI.connection.UserName}&Session={CIAPI.connection.Session}&AuthenticationUri=" +
                 Server.UrlEncode(Request.Url.AbsoluteUri);
-            AuthenticationWidget.ShouldLaunchPlatformAfterLogOn = true;
         }
 
 

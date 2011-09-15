@@ -14,6 +14,9 @@ namespace TestWebApplication
             AuthenticationWidget.CssRegistrar = new ControlInjectorCssRegistrar(Header);
             AuthenticationWidget.ServiceUri = ConfigurationManager.AppSettings["ServiceUri"];
             AuthenticationWidget.UseMockData = Boolean.Parse(ConfigurationManager.AppSettings["UserMockData"]);
+            AuthenticationWidget.LaunchPlatformUri =
+                "https://ciapipreprod.cityindextest9.co.uk/tp/fx/index.html#UserName={CIAPI.connection.UserName}&Session={CIAPI.connection.Session}&AuthenticationUri=" +
+                Server.UrlEncode(Request.Url.AbsoluteUri);
         }
 
 		protected void Page_Load(object sender, EventArgs e)

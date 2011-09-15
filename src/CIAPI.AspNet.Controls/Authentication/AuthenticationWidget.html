@@ -1,5 +1,11 @@
 ﻿<div id="AuthenticationWidget_<%=clientId%>"></div>
 <script type="text/javascript">
+    var <%=clientId%>_launchPlatform = function()
+    {
+        var url = $('#AuthenticationWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget('replaceTokens', '<%=LaunchPlatformUri%>'); 
+        window.open(url, '', 'width=975,height=575');
+    }
+    
     $(document).ready(function () {
         $.widget.culture('<%=UiCulture%>');
 
@@ -54,9 +60,10 @@
         </div>
         <div class="ui-ciapi-logoff-view  ui-corner-all" data-bind="visible: activeView() === 'LogOff'">
             <div class="ui-ciapi-authentication-content ui-widget-content">
-                <p>${you_are_logged_in_as}<span data-bind="text: username"/></p>
+                <p>${you_are_logged_in_as} <span data-bind="text: username"/></p>
             </div>
             <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">
+                <button class="ui-ciapi-authentication-button" onclick="<%=clientId%>_launchPlatform(); return false;">${launch_platform}</button>
                 <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">${logout}</button>
             </div>
         </div>
