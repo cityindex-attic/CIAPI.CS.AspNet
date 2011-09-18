@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using System.Reflection;
 using System.Web.UI;
 using CIAPI.AspNet.Controls.Core;
@@ -96,27 +95,42 @@ namespace CIAPI.AspNet.Controls.Authentication
 
         #region Helper Methods
 
+        /// <summary>
+        /// This POSTs the CIAPI.connection data to the server so the server Session can be updated
+        /// </summary>
+        const string StoreConnectionInSessionScript =
+@"$.ajax({ 
+    type: ""POST"", 
+    url: ""CIAPI.AspNet.Controls.Authentication/StoreConnectionInSession.ashx"",
+    data: { CIAPI_connection: JSON.stringify(data) },
+    contentType: ""application/x-www-form-urlencoded; charset=utf-8"",
+    success: function() {
+        {0}
+    }
+});
+";
+
         protected string GetAfterLogOffScript()
 	    {
+            var afterLogOffScript = StoreConnectionInSessionScript;
+
 	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
 	        {
-                return "window.location.href=this.replaceTokens('" + ResolveUrl(AfterLogOffNavigateUrl) + "');";
+                afterLogOffScript = afterLogOffScript.Replace("{0}", "window.location.href='" + ResolveUrl(AfterLogOffNavigateUrl) + "';");
 	        }
-	        return "";
+            return afterLogOffScript;
 	    }
 	    
 	    protected string GetAfterLogOnScript()
 	    {
-	        var afterLogOnScript = "";
-	        
+	        var afterLogOnScript = StoreConnectionInSessionScript;
+
 	        if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
             {
-                afterLogOnScript += "window.location.href=this.replaceTokens('" + ResolveUrl(AfterLogOnNavigateUrl) + "')";
+                afterLogOnScript = afterLogOnScript.Replace("{0}", "window.location.href='" + ResolveUrl(AfterLogOnNavigateUrl) + "';");
             }
             return afterLogOnScript;
         }
-
-
         #endregion
 
         protected string LocaliseControl(string content)

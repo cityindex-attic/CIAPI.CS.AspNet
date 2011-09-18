@@ -1,4 +1,5 @@
 ﻿using System.Web.UI;
+using CIAPI.AspNet.Controls.Authentication;
 
 namespace CIAPI.AspNet.Controls.Core
 {
@@ -11,11 +12,21 @@ namespace CIAPI.AspNet.Controls.Core
             _parentControl = parentControl;
         }
 
+        public CIAPIConnection CIAPIConnection
+        {
+            get
+            {
+                if (_parentControl.Page.Session["CIAPI_connection"] == null)
+                    return new CIAPIConnection();
+                return (CIAPIConnection) _parentControl.Page.Session["CIAPI_connection"];
+            }
+        }
+
         public string UserName
         {
             get
             {
-                return GetCookieValue("UserName");
+                return CIAPIConnection.UserName;
             }
         }
 
@@ -23,7 +34,7 @@ namespace CIAPI.AspNet.Controls.Core
         {
             get
             {
-                return GetCookieValue("Session");
+                return CIAPIConnection.Session;
             }
         }
 
@@ -31,18 +42,8 @@ namespace CIAPI.AspNet.Controls.Core
         {
             get
             {
-                return (UserName + Session).Trim() != string.Empty;
+               return CIAPIConnection.isConnected;
             }
-        }
-
-        private string GetCookieValue(string cookieName)
-        {
-            var httpCookie = _parentControl.Page.Request.Cookies[cookieName];
-            if (httpCookie == null || string.IsNullOrEmpty(httpCookie.Value))
-            {
-                return string.Empty;
-            }
-            return httpCookie.Value;
         }
     }
 }

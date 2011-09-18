@@ -27,10 +27,8 @@ namespace TestWebApplication
 		    {
 		       throw new AuthenticationException("You must be authenticated to view this page"); 
 		    }
-
            
             LoginStateLiteral.Text = string.Format("You are logged in as {0}", authenticationStateChecker.UserName);
-
 		}
 	}
 }
