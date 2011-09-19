@@ -1922,67 +1922,22 @@ CIAPI.__testData = (function() {
 })(amplify, _);
 (function (amplify, _, undefined) {
 
-    CIAPI.store = function (key, value, options) {
+    CIAPI.store = function (options) {
 
-        return amplify.store(key, value, options);
+        if (options.storageType.match(/^localStorage/i))
+        {
+            return amplify.store.localStorage(options.key, options.value, options);
+        }
+        else if (options.storageType.match(/^sessionStorage/i))
+        {
+            return amplify.store.sessionStorage(options.key, options.value, options);
+        }
+        else
+        {
+            return amplify.store(options.key, options.value, options);
+        }
     }
 
-    /**
-    * Get the value of a cookie with the given name.
-    *
-    * @example $.cookie('the_cookie');
-    * @desc Get the value of a cookie.
-    *
-    * @param String name The name of the cookie.
-    * @return The value of the cookie.
-    * @type String
-    *
-    * @name $.cookie
-    * @cat Plugins/Cookie
-    * @author Klaus Hartl/klaus.hartl@stilbuero.de
-    */
-    CIAPI.storeInCookie = function (name, value, options) {
-        if (typeof value != 'undefined') { // name and value given, set cookie
-            options = options || {};
-            if (value === null) {
-                value = '';
-                options.expires = -1;
-            }
-            var expires = '';
-            if (options.expires && (typeof options.expires == 'number' || options.expires.toUTCString)) {
-                var date;
-                if (typeof options.expires == 'number') {
-                    date = new Date();
-                    date.setTime(date.getTime() + (options.expires * 24 * 60 * 60 * 1000));
-                } else {
-                    date = options.expires;
-                }
-                expires = '; expires=' + date.toUTCString(); // use expires attribute, max-age is not supported by IE
-            }
-            // CAUTION: Needed to parenthesize options.path and options.domain
-            // in the following expressions, otherwise they evaluate to undefined
-            // in the packed version for some reason...
-            var path = options.path ? '; path=' + (options.path) : '';
-            var domain = options.domain ? '; domain=' + (options.domain) : '';
-            var secure = options.secure ? '; secure' : '';
-            document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
-        } else { // only name given, get cookie
-            var cookieValue = null;
-            if (document.cookie && document.cookie != '') {
-                var cookies = document.cookie.split(';');
-                for (var i = 0; i < cookies.length; i++) {
-                    var cookie = cookies[i].trim();
-                    // Does this cookie string begin with the name we want?
-                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                        break;
-                    }
-                }
-            }
-            return cookieValue;
-        }
-    };
-   
 })(amplify, _);
 (function(amplify, _, undefined) {
    amplify.request.decoders.ciapiDecoder = function ( data, status, xhr, success, error ) {
@@ -2026,6 +1981,19 @@ CIAPI.__testData = (function() {
         decoder: "ciapiDecoder"
     });
 
+   amplify.request.define("GetClientAndTradingAccount", "cors", {
+        url: "{ServiceUri}/UserAccount/ClientAndTradingAccount?UserName={UserName}&Session={Session}&only200=true",
+        dataType: "json",
+        contentType: "application/json; charset=utf-8",
+        type: "GET",
+        processData: false,
+        beforeSend: function(xhr, settings) {
+                        settings.data = JSON.stringify(settings.data);
+                        return true;
+                  },
+        decoder: "ciapiDecoder"
+    });
+
    amplify.request.define( "ListCfdMarkets", "cors", {
         url: "{ServiceUri}/cfd/markets?MarketName={searchByMarketName}&MarketCode={searchByMarketCode}&ClientAccountId={clientAccountId}&MaxResults={maxResults}&only200=true",
         dataType: "json",
@@ -2047,14 +2015,44 @@ var CIAPI = CIAPI || {};
 
 (function(amplify,_,undefined) {
 
-CIAPI.connection = CIAPI.store("CIAPI.connection") || {};
-_(CIAPI.connection).defaults({
+var EIGHT_HOURS = 8 * 60 * 60 * 1000, //in ms
+    VALIDATE_CONNECTION_POLL_MS = 20 * 60 * 1000;
+
+var storeConnection = function(connection) {
+    CIAPI.store({
+        key:"CIAPI_connection",
+        value: connection,
+        storageType: "sessionStorage",
+        expires: EIGHT_HOURS
+    });
+
+    if (connection.isConnected) {
+       startConnectionValidationPolling();
+    } else {
+       stopConnectionValidationPolling();
+    }
+};
+
+var loadConnection = function() {
+    CIAPI.connection = _({}).extend(CIAPI.store({
+                                key:"CIAPI_connection",
+                                storageType: "sessionStorage"
+                            }));
+    _(CIAPI.connection).defaults({
         isConnected : false,
         UserName: "",
         Session: "",
         ServiceUri: "",
         StreamUri: ""
-});
+    });
+};
+
+var removeConnection = function() {
+    CIAPI.connection.isConnected = false;
+    CIAPI.connection.UserName = "";
+    CIAPI.connection.Session = "";
+    storeConnection(CIAPI.connection);
+}
 
 /**
  * Connect to the CIAPI
@@ -2081,17 +2079,12 @@ CIAPI.connect = function(connectionOptions) {
                 CIAPI.connection.isConnected = true;
                 CIAPI.connection.UserName = connectionOptions.UserName;
                 CIAPI.connection.Session = data.Session;
-                CIAPI.store("CIAPI.connection", CIAPI.connection);
-                CIAPI.storeInCookie("UserName", CIAPI.connection.UserName);
-                CIAPI.storeInCookie("Session", CIAPI.connection.Session);
+                storeConnection(CIAPI.connection);
                 connectionOptions.success(data);
            },
            error: function( data ) {
-                CIAPI.connection.isConnected = false;
-                CIAPI.connection.Session = "";
-                CIAPI.store("CIAPI.connection", CIAPI.connection);
-                CIAPI.storeInCookie("UserName", "");
-                CIAPI.storeInCookie("Session", "");
+                _(data).defaults({ ErrorCode: 0, ErrorMessage: "Unknown", HttpStatus: 0});
+                removeConnection();
                 connectionOptions.error(data);
            }
    });
@@ -2119,21 +2112,70 @@ CIAPI.disconnect = function(options) {
                       Session: options.Session
                   },
            success:  function( data ) {
-                CIAPI.connection.isConnected = false;
-                CIAPI.connection.UserName = "";
-                CIAPI.connection.Session = "";
-                CIAPI.store("CIAPI.connection", CIAPI.connection);
-                CIAPI.storeInCookie("UserName", "");
-                CIAPI.storeInCookie("Session", "");
+                removeConnection();
                 options.success(data);
            },
            error: function( data ) {
                 options.error(data);
            }
    });
-
 };
 
+/**
+ * Event - fired whenever the connection state changes
+ * @param connection
+ */
+CIAPI.OnConnectionInvalid = function(connection) {
+
+}
+/**
+ * Check if the current connection is still valid
+ * If connection not valid, remove stored connection and raise OnConnectionInvalid event
+ */
+CIAPI.validateConnection = function() {
+   if (!CIAPI.connection.isConnected) 
+        return;  // no use validating an invalid connection!
+   amplify.request( {
+           resourceId: "GetClientAndTradingAccount",
+           data:  {
+                      ServiceUri: CIAPI.connection.ServiceUri,
+                      UserName: CIAPI.connection.UserName,
+                      Session: CIAPI.connection.Session
+                  },
+           success:  function( data ) {
+              //Do nothing - connection is still valid 
+           },
+           error: function( data ) {
+               if (data.HttpStatus === 401) {
+                  removeConnection();
+                  CIAPI.OnConnectionInvalid(CIAPI.connection);
+               }
+           }
+   });
+};
+
+var isConnectionValidationPollingActive = false;
+var startConnectionValidationPolling = function() {
+    isConnectionValidationPollingActive = true;
+    (function recursiveSetTimeout() {
+        if (isConnectionValidationPollingActive) {
+            setTimeout(function() {
+                CIAPI.validateConnection();
+
+                recursiveSetTimeout();
+            }, VALIDATE_CONNECTION_POLL_MS)
+        }
+    })();
+}
+var stopConnectionValidationPolling = function() {
+    isConnectionValidationPollingActive = false;
+}
+
+/**
+ *  Init
+ */
+loadConnection();
+CIAPI.validateConnection();
 
 })(amplify, _);
 var CIAPI = CIAPI || {};
@@ -2316,6 +2358,38 @@ CIAPI.streams = (function() {
     };
 
 })();
+/**
+ * response from an account information query
+ * @constructor
+ *
+ *
+ * @returns a frozen readonly object
+ */
+CIAPI.dto.AccountInformationResponseDTO = function(logonUserName, clientAccountId, clientAccountCurrency, tradingAccounts){
+    /**
+     * logon user name
+     * @type String
+     */
+    this.LogonUserName = logonUserName; /**
+     * logon user name
+     * @type Number
+     */
+    this.ClientAccountId = clientAccountId;
+    /**
+     * client account id
+     * @type String
+     */
+    this.ClientAccountCurrency = clientAccountCurrency;
+    /**
+     * Base currency of the client account
+     * @type String
+     */
+    this.TradingAccounts = tradingAccounts;
+
+    Object.freeze(this);
+}
+
+
 /**
  * Details of an error
  * @constructor
