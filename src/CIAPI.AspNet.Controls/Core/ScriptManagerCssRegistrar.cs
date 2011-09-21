@@ -7,12 +7,12 @@ namespace CIAPI.AspNet.Controls.Core
 {
     public class ScriptManagerCssRegistrar : ICssRegistrar
     {
-        public void RegisterFromResource(WebControl control, Type resourceAssembly, string resourceNamePrefix, string resourceName)
+        public void RegisterFromResource(WebControl control, Type resourceType, string resourceNamePrefix, string resourceName)
         {
             var scriptManager = GetPageScriptManager(control);
 
             if (ResourceAddedAlready(scriptManager, resourceName)) return;
-            var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceAssembly,
+            var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceType,
                                                                      resourceNamePrefix + "." + resourceName);
 
             var css = @"<link href=""" + cssUrl + @""" type=""text/css"" rel=""stylesheet"" />";

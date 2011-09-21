@@ -8,3 +8,4 @@
 [assembly: System.Web.UI.WebResource("CIAPI.AspNet.Controls.Authentication.js.CIAPI.Authentication.debug.js", "application/x-javascript")]
 
 [assembly: System.Web.UI.WebResource("CIAPI.AspNet.Controls.Authentication.js.CIAPI.amplify.requests.mock.js", "application/x-javascript")]
+[assembly: System.Web.UI.WebResource("CIAPI.AspNet.Controls.Authentication.js.AuthenticationWidget.js", "application/x-javascript")]

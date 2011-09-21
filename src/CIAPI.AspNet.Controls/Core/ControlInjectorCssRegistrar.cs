@@ -14,9 +14,9 @@ namespace CIAPI.AspNet.Controls.Core
             _injectionTarget = injectionTarget;
         }
 
-        public void RegisterFromResource(WebControl control, Type resourceAssembly, string resourceNamePrefix, string resourceName)
+        public void RegisterFromResource(WebControl control, Type resourceType, string resourceNamePrefix, string resourceName)
         {
-            var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceAssembly,
+            var cssUrl = control.Page.ClientScript.GetWebResourceUrl(resourceType,
                                                                      resourceNamePrefix + "." + resourceName);
 
             var cssControl = new Literal {Text = @"<link href=""" + cssUrl + @""" type=""text/css"" rel=""stylesheet"" />"};

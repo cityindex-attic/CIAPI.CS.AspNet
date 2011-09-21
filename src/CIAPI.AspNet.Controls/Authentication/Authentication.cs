@@ -68,6 +68,9 @@ namespace CIAPI.AspNet.Controls.Authentication
             {
                 JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.CIAPI.amplify.requests.mock.js");
             }
+
+            JavaScriptRegistrar.RegisterFromResource(this, GetType().Assembly, "CIAPI.AspNet.Controls.Authentication", "js.AuthenticationWidget.js");
+            CssRegistrar.RegisterFromResource(this, GetType(), "CIAPI.AspNet.Controls.Authentication", "css.CIAPI.Authentication.min.css");
         }
 
         protected override void RenderContents(HtmlTextWriter output)
@@ -95,41 +98,22 @@ namespace CIAPI.AspNet.Controls.Authentication
 
         #region Helper Methods
 
-        /// <summary>
-        /// This POSTs the CIAPI.connection data to the server so the server Session can be updated
-        /// </summary>
-        const string StoreConnectionInSessionScript =
-@"$.ajax({ 
-    type: ""POST"", 
-    url: ""CIAPI.AspNet.Controls.Authentication/StoreConnectionInSession.ashx"",
-    data: { CIAPI_connection: JSON.stringify(data) },
-    contentType: ""application/x-www-form-urlencoded; charset=utf-8"",
-    success: function() {
-        {0}
-    }
-});
-";
+        private string CreateStoreSessionThenRedirectScript(string navigateUrl)
+        {
+            const string SCRIPT = "AuthenticationWidget.storeConnectionInASPNETSession(CIAPI.connection, function() {{ {0} }});";
+            return string.Format(SCRIPT, string.IsNullOrEmpty(navigateUrl) ?
+                                  ""                                                           // do nothing if no NavigateUrl has been set
+                                 : "window.location.href='" + ResolveUrl(navigateUrl) + "';"); // redirect to the NavigateUrl given
+        }
 
         protected string GetAfterLogOffScript()
-	    {
-            var afterLogOffScript = StoreConnectionInSessionScript;
+        {
+            return CreateStoreSessionThenRedirectScript(AfterLogOffNavigateUrl);
+        }
 
-	        if (!string.IsNullOrEmpty(AfterLogOffNavigateUrl))
-	        {
-                afterLogOffScript = afterLogOffScript.Replace("{0}", "window.location.href='" + ResolveUrl(AfterLogOffNavigateUrl) + "';");
-	        }
-            return afterLogOffScript;
-	    }
-	    
-	    protected string GetAfterLogOnScript()
+        protected string GetAfterLogOnScript()
 	    {
-	        var afterLogOnScript = StoreConnectionInSessionScript;
-
-	        if (!string.IsNullOrEmpty(AfterLogOnNavigateUrl))
-            {
-                afterLogOnScript = afterLogOnScript.Replace("{0}", "window.location.href='" + ResolveUrl(AfterLogOnNavigateUrl) + "';");
-            }
-            return afterLogOnScript;
+            return CreateStoreSessionThenRedirectScript(AfterLogOnNavigateUrl);
         }
         #endregion
 

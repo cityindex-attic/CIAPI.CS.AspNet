@@ -1,15 +1,7 @@
 ﻿<div id="AuthenticationWidget_<%=clientId%>"></div>
 <script type="text/javascript">
-    var <%=clientId%>_launchPlatform = function()
-    {
-        var url = $('#AuthenticationWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget('replaceTokens', '<%=LaunchPlatformUri%>'); 
-        window.open(url, '', 'width=975,height=575');
-    }
-    
-    $(document).ready(function () {
+       $(document).ready(function () {
         $.widget.culture('<%=UiCulture%>');
-
-        CIAPI.connection.ServiceUri = "<%=serviceUri%>";
 
         $("#AuthenticationWidgetTemplate_<%=clientId%>").template("AuthenticationWidgetTemplate_<%=clientId%>"); //compile & name the template
         $('#AuthenticationWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget(
@@ -22,7 +14,9 @@
             afterLogOff: function (data) {
                 <%=afterLogOff%>
             },
-            translations: <%=translations%>
+            translations: <%=translations%>,
+            ServiceUri: "<%=serviceUri%>",
+            StreamUri: "unknown"
         });
     });
 </script>
@@ -63,7 +57,7 @@
                 <p>${you_are_logged_in_as} <span data-bind="text: username"/></p>
             </div>
             <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix">
-                <button class="ui-ciapi-authentication-button" onclick="<%=clientId%>_launchPlatform(); return false;">${launch_platform}</button>
+                <button class="ui-ciapi-authentication-button" onclick="AuthenticationWidget.launchPlatform('<%=LaunchPlatformUri%>'); return false;">${launch_platform}</button>
                 <button class="ui-ciapi-authentication-button" data-bind="click: doLogOff">${logout}</button>
             </div>
         </div>

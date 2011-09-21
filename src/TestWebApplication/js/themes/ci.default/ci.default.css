@@ -143,10 +143,9 @@ a
 }
 
 .ui-widget-header {
-    background: #c7c8c7 url(images/ui-ciapi-bg_highlight.png) 50% 50% repeat-x;
-    color: #333;
-    font-weight: bold;
-    text-shadow: 0px 1px 0px rgba(255,255,255,0.7);
+    border-bottom: 1px solid #e5e5e5;
+    margin: 0 0 10px;
+    padding: 0 0 5px;
 }
 
 .ui-widget-header a {
@@ -2156,87 +2155,3 @@ button.ui-button::-moz-focus-inner
     -webkit-border-radius: 10px;
     border-radius: 10px;
 }
-
-/* Custom */
-
-/* reset extra padding in Firefox */
-/*
- * CIAPI Authentication @VERSION 0.1
- *
- * {Copyright message could go here}
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * {Link to license}
- *
- * {url to docs on on the dev portal for Authentication widget}
- */
-.ui-ciapi-authentication {
-    overflow: hidden;
-    padding: 0;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-titlebar {
-    border-bottom: 1px solid #a1a1a1;
-    border-top: 1px solid #fff;
-    padding: .5em 1em;
-    position: relative;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-title {
-    float: left;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-content {
-    border: 0;
-    overflow: auto;
-    padding: 1em 1.2em 0;
-    position: relative;
-    zoom: 1;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-content fieldset {
-    border: none;
-    margin: 0;
-    padding: 0;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-input {
-    background: #fff;
-    margin: 0.2em 0 1.2em;
-    padding: 0.3em 0.5em;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-input input {
-    border: none;
-    padding: 0;
-    width: 100%;
-}
-
-
-.ui-ciapi-authentication .ui-ciapi-authentication-buttonpane {
-    text-align: left;
-    border-width: 0;
-    background-image: none;
-    padding: 0 1.2em 0.5em;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-buttonpane .ui-ciapi-authentication-buttonset {
-    float: right;
-}
-
-.ui-ciapi-authentication .ui-ciapi-authentication-buttonpane button {
-    float: right;
-    margin: 0.5em 0;
-    cursor: pointer;
-}
-
-.ui-ciapi-authentication .ui-resizable-se {
-    width: 14px;
-    height: 14px;
-    right: 3px;
-    bottom: 3px;
-}
-
-.ui-draggable .ui-ciapi-authentication-titlebar {
-    cursor: move;
-}
-

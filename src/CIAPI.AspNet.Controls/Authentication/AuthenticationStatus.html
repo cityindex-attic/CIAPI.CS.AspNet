@@ -1,16 +1,8 @@
 ﻿<div id="AuthenticationStatusWidget_<%=clientId%>"></div>
 <script type="text/javascript">
-    var <%=clientId%>_launchPlatform = function()
-    {
-        var url = $('#AuthenticationStatusWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget('replaceTokens', '<%=LaunchPlatformUri%>'); 
-        window.open(url, '', 'width=975,height=575');
-    }
-
     $(document).ready(function () {
         $.widget.culture('<%=UiCulture%>');
-
-        CIAPI.connection.ServiceUri = "<%=serviceUri%>";
-
+        
         $("#<%=clientId%>template").template("template<%=clientId%>"); //compile & name the template
         $('#AuthenticationStatusWidget_<%=clientId%>').CIAPI_widget_AuthenticationWidget(
         {
@@ -19,7 +11,9 @@
             afterLogOff: function (data) {
                 <%=afterLogOff%>
             },
-            translations: <%=translations%>
+            translations: <%=translations%>,
+            ServiceUri: "<%=serviceUri%>",
+            StreamUri: "unknown"
         });
     });
 </script>
@@ -48,7 +42,7 @@
                 </a>
             </div>
             <div class="launchPlatformBtn">
-                <a href="#" onclick="<%=clientId%>_launchPlatform(); return false;" class="launchPlatform">
+                <a href="#" onclick="AuthenticationWidget.launchPlatform('<%=LaunchPlatformUri%>'); return false;" class="launchPlatform">
                     <span>${launch_platform}</span>
                 </a>
             </div>
