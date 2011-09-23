@@ -19,25 +19,21 @@
                 '            <p class="ui-state-error" data-bind="text: errorMessage, visible: errorMessage().length > 0"></p> ' +
                 '            <fieldset>                                                                                        ' +
                 '                <label for="username">${username}</label>                                                     ' +
-                '                <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">                   ' +
-                '                    <input type="text"                                                                        ' +
+                '                <input type="text"                                                                            ' +
                 '                       name="username"                                                                        ' +
                 '                       id="username"                                                                          ' +
-                '                       class="inputFields"                                                                    ' +
+                '                       class="inputFields ui-widget-content ui-corner-all"                                    ' +
                 '                       data-bind="value: username"/>                                                          ' +
-                '                </div>                                                                                        ' +
                 '                <label for="password">${password}</label>                                                     ' +
-                '                <div class="ui-ciapi-authentication-input ui-corner-all ui-widget-content">                   ' +
-                '                    <input type="password"                                                                    ' +
+                '                <input type="password"                                                                        ' +
                 '                       name="password"                                                                        ' +
                 '                       id="password"                                                                          ' +
-                '                       class="inputFields"                                                                    ' +
+                '                       class="inputFields ui-widget-content ui-corner-all"                                    ' +
                 '                       data-bind="value: password"/>                                                          ' +
-                '                </div>                                                                                        ' +
                 '            </fieldset>                                                                                       ' +
                 '        </div>                                                                                                ' +
                 '        <div class="ui-ciapi-authentication-buttonpane ui-widget-content ui-helper-clearfix ui-corner-bottom">' +
-                '            <button class="ui-ciapi-authentication-button" data-bind="click: doLogOn">${logon}</button>       ' +
+                '            <button type="submit" class="ui-ciapi-authentication-button" data-bind="click: doLogOn">${logon}</button>' +
                 '        </div>       ' +
                     '</form>                                                                                                   ' +
                 '    </div>                                                                                                    ' +
@@ -68,10 +64,10 @@
                     //don't place error messages anywhere
                 },
                 highlight: function (element, errorClass, validClass) {
-                    $(element).parent().addClass(errorClass).removeClass(validClass);
+                    $(element).addClass(errorClass).removeClass(validClass);
                 },
                 unhighlight: function (element, errorClass, validClass) {
-                    $(element).parent().addClass(validClass).removeClass(errorClass);
+                    $(element).addClass(validClass).removeClass(errorClass);
                 }
             });
             return form.valid();
@@ -218,6 +214,9 @@
             this.options.viewModel.activeView(CIAPI.connection.isConnected ? 'LogOff' : 'LogOn');
             if (this.options.shakeOnError && this.options.viewModel.errorMessage()) {
                 this.element.effect("shake", { times: 2 }, 100);
+            }
+            if (this.options.viewModel.errorMessage()) {
+                this.element.find(".ui-state-error").hide().fadeIn('fast');
             }
             this._toggleInput({ isDisabled: false, parentElement: this.options.viewModel.widget.element });
         }

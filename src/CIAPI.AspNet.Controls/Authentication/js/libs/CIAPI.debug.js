@@ -1689,11 +1689,6 @@ if (typeof String.trim == "undefined") {
     var xhrProps = [ "status", "statusText", "responseText", "responseXML", "readyState" ],
         rurlData = /\{([^\}]+)\}/g;
 
-//    $.support.cors = false;
-    if (!$.support.cors) {
-        $.flXHRproxy.registerOptions('',{xmlResponseText:false});
-    }
-
     amplify.request.types.cors = function( defnSettings ) {
         defnSettings = $.extend({
             type: "GET"
@@ -1796,7 +1791,7 @@ if (typeof String.trim == "undefined") {
                 }
             });
             if (!$.support.cors) {
-                ajaxSettings.transport = 'flXHRproxy';
+               ajaxSettings.flXHR = true;
             }
             $.ajax( ajaxSettings );
 
@@ -1951,6 +1946,11 @@ CIAPI.__testData = (function() {
             return;
         }
 
+        if (status === "error") {
+            returnError(new CIAPI.dto.ApiErrorResponseDTO(500, 0, "There was an error with the Ajax transport"));
+            return;
+        }
+
         if (!_(data).isNull() && !_(data).isUndefined(data) && !data.ErrorCode) {
             success(data);
         } else {
@@ -1986,8 +1986,8 @@ CIAPI.__testData = (function() {
         decoder: "ciapiDecoder"
     });
 
-    amplify.request.define("GetClientAndTradingAccount", "cors", {
-        url: "{ServiceUri}/UserAccount/ClientAndTradingAccount?UserName={UserName}&Session={Session}&only200=true",
+    amplify.request.define("ValidateSession", "cors", {
+        url: "{ServiceUri}/UserAccount/ClientAndTradingAccount?UserName={UserName}&Session={Session}&only200=true&ts={ts}",
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         type: "GET",
@@ -2021,11 +2021,12 @@ var CIAPI = CIAPI || {};
 (function(amplify,_,undefined) {
 
 var EIGHT_HOURS = 8 * 60 * 60 * 1000, //in ms
+    connectionStorageType = "localStorage",
     storeConnection = function(connection) {
         CIAPI.store({
             key:"CIAPI_connection",
             value: connection,
-            storageType: "sessionStorage",
+            storageType: connectionStorageType,
             expires: EIGHT_HOURS
         });
     },
@@ -2096,7 +2097,7 @@ CIAPI.connect = function(connectionOptions) {
 CIAPI.reconnect = function() {
     CIAPI.connection = _({}).extend(CIAPI.store({
                                 key:"CIAPI_connection",
-                                storageType: "sessionStorage"
+                                storageType: connectionStorageType
                             }));
     
    if (!CIAPI.connection.isConnected) {
@@ -2107,11 +2108,12 @@ CIAPI.reconnect = function() {
     //Validate the existing connection by trying to use it
     //An error will be trapped by the 401 error trapper below
     amplify.request( {
-        resourceId: "GetClientAndTradingAccount",
+        resourceId: "ValidateSession",
         data:  {
                     ServiceUri: CIAPI.connection.ServiceUri,
                     UserName: CIAPI.connection.UserName,
-                    Session: CIAPI.connection.Session
+                    Session: CIAPI.connection.Session,
+                    ts: (new Date()).getTime()
                 },
         success:  function( data ) {
             CIAPI.publish("CIAPI.connection.status", CIAPI.connection);
