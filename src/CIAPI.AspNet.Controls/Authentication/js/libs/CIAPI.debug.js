@@ -2021,11 +2021,12 @@ var CIAPI = CIAPI || {};
 (function(amplify,_,undefined) {
 
 var EIGHT_HOURS = 8 * 60 * 60 * 1000, //in ms
+    connectionStorageType = "localStorage",
     storeConnection = function(connection) {
         CIAPI.store({
             key:"CIAPI_connection",
             value: connection,
-            storageType: "sessionStorage",
+            storageType: connectionStorageType,
             expires: EIGHT_HOURS
         });
     },
@@ -2096,7 +2097,7 @@ CIAPI.connect = function(connectionOptions) {
 CIAPI.reconnect = function() {
     CIAPI.connection = _({}).extend(CIAPI.store({
                                 key:"CIAPI_connection",
-                                storageType: "sessionStorage"
+                                storageType: connectionStorageType
                             }));
     
    if (!CIAPI.connection.isConnected) {

@@ -55,6 +55,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Global.asax" />
     <Content Include="js\flXHR-1.0.6\checkplayer.js" />
     <Content Include="js\flXHR-1.0.6\flensed.js" />
     <Content Include="js\flXHR-1.0.6\flXHR.js" />
@@ -148,6 +149,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Logon.aspx.cs">
       <DependentUpon>Logon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

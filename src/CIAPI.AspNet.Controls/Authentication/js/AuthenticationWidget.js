@@ -2,7 +2,7 @@
     AuthenticationWidget = {
         launchPlatform: function (launchPlatformUri) {
             var url = CIAPI.replaceConnectionTokens(launchPlatformUri);
-            window.open(url, '', 'width=975,height=575');
+            window.open(url, '', 'width=975,height=575,location=no');
         },
         storeConnectionInASPNETSession: function (connectionInfo, success) {
             $.ajax({
