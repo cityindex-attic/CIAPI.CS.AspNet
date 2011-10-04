@@ -2,7 +2,7 @@
     AuthenticationWidget = {
         launchPlatform: function (launchPlatformUri) {
             var url = CIAPI.replaceConnectionTokens(launchPlatformUri);
-            window.open(url, '', 'width=975,height=575,location=no');
+            window.open(url, '', 'width=975,height=575,location=no,resizable=yes');
         },
         storeConnectionInASPNETSession: function (connectionInfo, success) {
             $.ajax({
@@ -18,7 +18,7 @@
     //Tell server about changes to connection status
     CIAPI.subscribe("CIAPI.connection.status", function (newConnection) {
         AuthenticationWidget.storeConnectionInASPNETSession(newConnection, function () {
-            console.log('Updated CIAPI.connection on server'); 
+            console.log('Updated CIAPI.connection on server');
         });
     });
 })(jQuery, CIAPI);

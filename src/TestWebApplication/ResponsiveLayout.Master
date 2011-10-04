@@ -21,7 +21,7 @@
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager" runat="server">
         <Scripts>
-            <asp:ScriptReference Path="js/jquery/1.5.1/jquery.debug.js" />
+            <asp:ScriptReference Path="js/jquery/1.6.4/jquery.min.js" />
             <asp:ScriptReference Path="js/jquery.tmpl.min.js" />
             <asp:ScriptReference Path="js/json2.js" />
             <asp:ScriptReference Path="js/jquery-ui/1.8.11/js/jquery-ui.min.js" />

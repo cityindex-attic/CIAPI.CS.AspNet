@@ -39,7 +39,7 @@ namespace CIAPI.AspNet.Controls.Authentication
         public Authentication()
         {
             UseMockData = false;
-            IsDebug = true;
+            IsDebug = false;
             _authenticationStateChecker = new AuthenticationStateChecker(this);
         }
 
