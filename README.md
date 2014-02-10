@@ -12,7 +12,7 @@ This project has been retired and is no longer being supported by City Index Ltd
 
 ## License
 
-Copyright 2010 City Index Ltd.
+Copyright 2011 City Index Ltd.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
